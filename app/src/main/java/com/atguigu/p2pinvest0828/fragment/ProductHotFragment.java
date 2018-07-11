@@ -39,42 +39,42 @@ public class ProductHotFragment extends BaseFragment {
 
     @Override
     protected void initData(String content) {
-         for(int i = 0; i < datas.length; i++) {
-             final TextView tv = new TextView(getContext());
+        for (int i = 0; i < datas.length; i++) {
+            final TextView tv = new TextView(getContext());
 
-             //设置属性
-             tv.setText(datas[i]);
-             ViewGroup.MarginLayoutParams mp = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-             mp.leftMargin = UIUtils.dp2px(5);
-             mp.rightMargin = UIUtils.dp2px(5);
-             mp.topMargin = UIUtils.dp2px(5);
-             mp.bottomMargin = UIUtils.dp2px(5);
-             tv.setLayoutParams(mp);//设置边距
+            //设置属性
+            tv.setText(datas[i]);
+            ViewGroup.MarginLayoutParams mp = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            mp.leftMargin = UIUtils.dp2px(5);
+            mp.rightMargin = UIUtils.dp2px(5);
+            mp.topMargin = UIUtils.dp2px(5);
+            mp.bottomMargin = UIUtils.dp2px(5);
+            tv.setLayoutParams(mp);//设置边距
 
-             int padding = UIUtils.dp2px(5);
-             tv.setPadding(padding, padding, padding, padding);//设置内边距
+            int padding = UIUtils.dp2px(5);
+            tv.setPadding(padding, padding, padding, padding);//设置内边距
 
-             tv.setTextSize(UIUtils.dp2px(10));
+            tv.setTextSize(UIUtils.dp2px(10));
 
-             Random random = new Random();
-             int red = random.nextInt(211);
-             int green = random.nextInt(211);
-             int blue = random.nextInt(211);
-             //设置单一背景
+            Random random = new Random();
+            int red = random.nextInt(211);
+            int green = random.nextInt(211);
+            int blue = random.nextInt(211);
+            //设置单一背景
 //             tv.setBackground(DrawUtils.getDrawable(Color.rgb(red,green,blue),UIUtils.dp2px(5)));
-             //设置具有选择器功能的背景
-             tv.setBackground(DrawUtils.getSelector(DrawUtils.getDrawable(Color.rgb(red, green, blue), UIUtils.dp2px(5)), DrawUtils.getDrawable(Color.WHITE, UIUtils.dp2px(5))));
-             //设置textView是可点击的.如果设置了点击事件，则TextView就是可点击的。
+            //设置具有选择器功能的背景
+            tv.setBackground(DrawUtils.getSelector(DrawUtils.getDrawable(Color.rgb(red, green, blue), UIUtils.dp2px(5)), DrawUtils.getDrawable(Color.WHITE, UIUtils.dp2px(5))));
+            //设置textView是可点击的.如果设置了点击事件，则TextView就是可点击的。
 //             tv.setClickable(true);
 
-             tv.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View v) {
-                     UIUtils.toast(tv.getText().toString(),false);
-                 }
-             });
-             flowHot.addView(tv);
-         }
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UIUtils.toast(tv.getText().toString(), false);
+                }
+            });
+            flowHot.addView(tv);
+        }
     }
 
     @Override

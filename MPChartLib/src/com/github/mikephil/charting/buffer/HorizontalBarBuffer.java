@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.buffer;
 
 import com.github.mikephil.charting.data.BarEntry;
@@ -63,7 +62,7 @@ public class HorizontalBarBuffer extends BarBuffer {
 
                     float value = vals[k];
 
-                    if(value >= 0f) {
+                    if (value >= 0f) {
                         y = posY;
                         yStart = posY + value;
                         posY = yStart;

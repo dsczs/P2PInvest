@@ -1,12 +1,11 @@
-
 package com.github.mikephil.charting.data;
 
 import android.graphics.Typeface;
 import android.util.Log;
 
 import com.github.mikephil.charting.components.YAxis.AxisDependency;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,42 +36,35 @@ public abstract class ChartData<T extends DataSet<? extends Entry>> {
     protected float mRightAxisMax = 0.0f;
 
     protected float mRightAxisMin = 0.0f;
-
-    /**
-     * the total sum of all y-values
-     */
-    private float mYValueSum = 0f;
-
-    /**
-     * total number of y-values across all DataSet objects
-     */
-    private int mYValCount = 0;
-
     /**
      * the last start value used for calcMinMax
      */
     protected int mLastStart = 0;
-
     /**
      * the last end value used for calcMinMax
      */
     protected int mLastEnd = 0;
-
+    /**
+     * holds all x-values the chart represents
+     */
+    protected List<String> mXVals;
+    /**
+     * array that holds all DataSets the ChartData object represents
+     */
+    protected List<T> mDataSets;
+    /**
+     * the total sum of all y-values
+     */
+    private float mYValueSum = 0f;
+    /**
+     * total number of y-values across all DataSet objects
+     */
+    private int mYValCount = 0;
     /**
      * contains the average length (in characters) an entry in the x-vals array
      * has
      */
     private float mXValAverageLength = 0;
-
-    /**
-     * holds all x-values the chart represents
-     */
-    protected List<String> mXVals;
-
-    /**
-     * array that holds all DataSets the ChartData object represents
-     */
-    protected List<T> mDataSets;
 
     public ChartData() {
         mXVals = new ArrayList<String>();
@@ -134,6 +126,23 @@ public abstract class ChartData<T extends DataSet<? extends Entry>> {
     }
 
     /**
+     * Generates an x-values array filled with numbers in range specified by the
+     * parameters. Can be used for convenience.
+     *
+     * @return
+     */
+    public static List<String> generateXVals(int from, int to) {
+
+        List<String> xvals = new ArrayList<String>();
+
+        for (int i = from; i < to; i++) {
+            xvals.add("" + i);
+        }
+
+        return xvals;
+    }
+
+    /**
      * Turns an array of strings into an List of strings.
      *
      * @param array
@@ -186,7 +195,7 @@ public abstract class ChartData<T extends DataSet<? extends Entry>> {
         if (mDataSets == null)
             return;
 
-        if(this instanceof ScatterData)
+        if (this instanceof ScatterData)
             return;
 
         for (int i = 0; i < mDataSets.size(); i++) {
@@ -298,6 +307,8 @@ public abstract class ChartData<T extends DataSet<? extends Entry>> {
         }
     }
 
+    /** ONLY GETTERS AND SETTERS BELOW THIS */
+
     /**
      * Calculates the total number of y-values across all DataSets the ChartData
      * represents.
@@ -320,8 +331,6 @@ public abstract class ChartData<T extends DataSet<? extends Entry>> {
         mYValCount = count;
     }
 
-    /** ONLY GETTERS AND SETTERS BELOW THIS */
-
     /**
      * returns the number of LineDataSets this object contains
      *
@@ -336,10 +345,11 @@ public abstract class ChartData<T extends DataSet<? extends Entry>> {
     /**
      * Returns the average value across all entries in this Data object
      * (all entries from the DataSets this data object holds)
+     *
      * @return
      */
     public float getAverage() {
-        return (float ) getYValueSum() / (float) getYValCount();
+        return (float) getYValueSum() / (float) getYValCount();
     }
 
     /**
@@ -882,23 +892,6 @@ public abstract class ChartData<T extends DataSet<? extends Entry>> {
     }
 
     /**
-     * Generates an x-values array filled with numbers in range specified by the
-     * parameters. Can be used for convenience.
-     *
-     * @return
-     */
-    public static List<String> generateXVals(int from, int to) {
-
-        List<String> xvals = new ArrayList<String>();
-
-        for (int i = from; i < to; i++) {
-            xvals.add("" + i);
-        }
-
-        return xvals;
-    }
-
-    /**
      * Sets a custom ValueFormatter for all DataSets this data object contains.
      *
      * @param f
@@ -962,16 +955,6 @@ public abstract class ChartData<T extends DataSet<? extends Entry>> {
     }
 
     /**
-     * Enables / disables highlighting values for all DataSets this data object
-     * contains.
-     */
-    public void setHighlightEnabled(boolean enabled) {
-        for (DataSet<?> set : mDataSets) {
-            set.setHighlightEnabled(enabled);
-        }
-    }
-
-    /**
      * Returns true if highlighting of all underlying values is enabled, false
      * if not.
      *
@@ -983,6 +966,16 @@ public abstract class ChartData<T extends DataSet<? extends Entry>> {
                 return false;
         }
         return true;
+    }
+
+    /**
+     * Enables / disables highlighting values for all DataSets this data object
+     * contains.
+     */
+    public void setHighlightEnabled(boolean enabled) {
+        for (DataSet<?> set : mDataSets) {
+            set.setHighlightEnabled(enabled);
+        }
     }
 
     /**

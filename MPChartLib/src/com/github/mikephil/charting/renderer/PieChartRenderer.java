@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Bitmap;
@@ -18,9 +17,9 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.Utils;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.List;
@@ -35,25 +34,23 @@ public class PieChartRenderer extends DataRenderer {
      */
     protected Paint mHolePaint;
     protected Paint mTransparentCirclePaint;
-
+    /**
+     * Bitmap for drawing the center hole
+     */
+    protected Bitmap mDrawBitmap;
+    protected Canvas mBitmapCanvas;
     /**
      * paint object for the text that can be displayed in the center of the
      * chart
      */
     private TextPaint mCenterTextPaint;
-
     private StaticLayout mCenterTextLayout;
     private String mCenterTextLastValue;
     private RectF mCenterTextLastBounds = new RectF();
-    private RectF[] mRectBuffer = { new RectF(), new RectF(), new RectF() };
-
-    /** Bitmap for drawing the center hole */
-    protected Bitmap mDrawBitmap;
-
-    protected Canvas mBitmapCanvas;
+    private RectF[] mRectBuffer = {new RectF(), new RectF(), new RectF()};
 
     public PieChartRenderer(PieChart chart, ChartAnimator animator,
-            ViewPortHandler viewPortHandler) {
+                            ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
         mChart = chart;
 
@@ -209,7 +206,7 @@ public class PieChartRenderer extends DataRenderer {
                         * mAnimator.getPhaseY())) + center.x);
                 float y = (float) (r
                         * Math.sin(Math.toRadians((rotationAngle + absoluteAngles[cnt] - offset)
-                                * mAnimator.getPhaseY())) + center.y);
+                        * mAnimator.getPhaseY())) + center.y);
 
                 float value = mChart.isUsePercentValuesEnabled() ? entry.getVal()
                         / data.getYValueSum() * 100f : entry.getVal();
@@ -322,7 +319,7 @@ public class PieChartRenderer extends DataRenderer {
                     // If width is 0, it will crash. Always have a minimum of 1
                     mCenterTextLayout = new StaticLayout(centerText, 0, centerText.length(),
                             mCenterTextPaint,
-                            (int)Math.max(Math.ceil(mCenterTextLastBounds.width()), 1.f),
+                            (int) Math.max(Math.ceil(mCenterTextLastBounds.width()), 1.f),
                             Layout.Alignment.ALIGN_NORMAL, 1.f, 0.f, false);
                 }
 
@@ -411,7 +408,7 @@ public class PieChartRenderer extends DataRenderer {
             /**
              * Make the box containing current arc larger equally in every
              * dimension, to preserve shape of arc. Code provided by:
-             * 
+             *
              * @link https://github.com/wogg
              */
             RectF highlighted = new RectF(circleBox.left - shift,
@@ -431,7 +428,7 @@ public class PieChartRenderer extends DataRenderer {
 
     /**
      * This gives all pie-slices a rounded edge.
-     * 
+     *
      * @param c
      */
     protected void drawRoundedSlices(Canvas c) {
@@ -443,7 +440,7 @@ public class PieChartRenderer extends DataRenderer {
 
         if (!dataSet.isVisible())
             return;
-        
+
         PointF center = mChart.getCenterCircleBox();
         float r = mChart.getRadius();
 
@@ -465,10 +462,10 @@ public class PieChartRenderer extends DataRenderer {
 
                 float x = (float) ((r - circleRadius)
                         * Math.cos(Math.toRadians((angle + newangle)
-                                * mAnimator.getPhaseY())) + center.x);
+                        * mAnimator.getPhaseY())) + center.x);
                 float y = (float) ((r - circleRadius)
                         * Math.sin(Math.toRadians((angle + newangle)
-                                * mAnimator.getPhaseY())) + center.y);
+                        * mAnimator.getPhaseY())) + center.y);
 
                 mRenderPaint.setColor(dataSet.getColor(j));
                 mBitmapCanvas.drawCircle(x, y, circleRadius, mRenderPaint);

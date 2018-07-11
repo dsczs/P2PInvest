@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.data;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ public class ScatterData extends BarLineScatterCandleBubbleData<ScatterDataSet> 
     public ScatterData() {
         super();
     }
-    
+
     public ScatterData(List<String> xVals) {
         super(xVals);
     }
@@ -42,7 +41,7 @@ public class ScatterData extends BarLineScatterCandleBubbleData<ScatterDataSet> 
 
     /**
      * Returns the maximum shape-size across all DataSets.
-     * 
+     *
      * @return
      */
     public float getGreatestShapeSize() {

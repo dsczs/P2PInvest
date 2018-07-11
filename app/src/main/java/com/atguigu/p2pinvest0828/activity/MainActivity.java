@@ -29,6 +29,7 @@ import butterknife.OnClick;
 public class MainActivity extends BaseActivity {
 
 
+    private static final int WHAT_RESET_BACK = 1;
     @Bind(R.id.fl_main)
     FrameLayout flMain;
     @Bind(R.id.iv_main_home)
@@ -56,16 +57,30 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.ll_main_more)
     LinearLayout llMainMore;
     private FragmentTransaction transaction;
-
+    private HomeFragment homeFragment;
+    private InvestFragment investFragment;
+    private MeFragment meFragment;
+    private MoreFragment moreFragment;
+    private boolean flag = true;
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            Log.e("TAG", "handleMessage");
+            switch (msg.what) {
+                case WHAT_RESET_BACK:
+                    flag = true;//复原
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void initData() {
         //默认显示首页
         setSelect(0);
 
-        //模拟异常
+//        //模拟异常
 //        String str = null;
-        //try {
+//        try {
 //            if(str.equals("abc")){
 //                Log.e("TAG", "abc");
 //            }
@@ -75,7 +90,7 @@ public class MainActivity extends BaseActivity {
 
         //显示来自于哪个渠道的应用
         String channel = getChannel();
-        UIUtils.toast(channel,false);
+        UIUtils.toast(channel, false);
     }
 
     private String getChannel() {
@@ -98,28 +113,27 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.ll_main_home,R.id.ll_main_invest,R.id.ll_main_me,R.id.ll_main_more})
-    public void showTab(View view){
+    @OnClick({R.id.ll_main_home, R.id.ll_main_invest, R.id.ll_main_me, R.id.ll_main_more})
+    public void showTab(View view) {
 //        Toast.makeText(MainActivity.this, "选择了具体的Tab", Toast.LENGTH_SHORT).show();
         switch (view.getId()) {
-            case R.id.ll_main_home ://首页
+            case R.id.ll_main_home://首页
                 setSelect(0);
                 break;
-            case R.id.ll_main_invest ://投资
+            case R.id.ll_main_invest://投资
                 setSelect(1);
                 break;
-            case R.id.ll_main_me ://我的资产
+            case R.id.ll_main_me://我的资产
                 setSelect(2);
                 break;
-            case R.id.ll_main_more ://更多
+            case R.id.ll_main_more://更多
                 setSelect(3);
                 break;
         }
     }
-    private HomeFragment homeFragment;
-    private InvestFragment investFragment;
-    private MeFragment meFragment;
-    private MoreFragment moreFragment;
+
+    //重写onKeyUp()，实现连续两次点击方可退出当前应用
+
     //提供相应的fragment的显示
     private void setSelect(int i) {
         FragmentManager fragmentManager = this.getSupportFragmentManager();
@@ -131,8 +145,8 @@ public class MainActivity extends BaseActivity {
         resetTab();
 
         switch (i) {
-            case 0 :
-                if(homeFragment == null){
+            case 0:
+                if (homeFragment == null) {
                     homeFragment = new HomeFragment();//创建对象以后，并不会马上调用生命周期方法。而是在commit()之后，方才调用
                     transaction.add(R.id.fl_main, homeFragment);
                 }
@@ -147,8 +161,8 @@ public class MainActivity extends BaseActivity {
                 tvMainHome.setTextColor(UIUtils.getColor(R.color.home_back_selected));
 
                 break;
-            case 1 :
-                if(investFragment == null){
+            case 1:
+                if (investFragment == null) {
                     investFragment = new InvestFragment();
                     transaction.add(R.id.fl_main, investFragment);
                 }
@@ -159,8 +173,8 @@ public class MainActivity extends BaseActivity {
                 tvMainInvest.setTextColor(UIUtils.getColor(R.color.home_back_selected));
 
                 break;
-            case 2 :
-                if(meFragment == null){
+            case 2:
+                if (meFragment == null) {
                     meFragment = new MeFragment();
                     transaction.add(R.id.fl_main, meFragment);
                 }
@@ -171,8 +185,8 @@ public class MainActivity extends BaseActivity {
                 tvMainMe.setTextColor(UIUtils.getColor(R.color.home_back_selected01));
 
                 break;
-            case 3 :
-                if(moreFragment == null){
+            case 3:
+                if (moreFragment == null) {
                     moreFragment = new MoreFragment();
                     transaction.add(R.id.fl_main, moreFragment);
                 }
@@ -204,44 +218,29 @@ public class MainActivity extends BaseActivity {
 
     private void hideFragments() {
 
-        if(homeFragment != null){
+        if (homeFragment != null) {
             transaction.hide(homeFragment);
         }
-        if(investFragment != null){
+        if (investFragment != null) {
             transaction.hide(investFragment);
         }
-        if(meFragment != null){
+        if (meFragment != null) {
             transaction.hide(meFragment);
         }
-        if(moreFragment != null){
+        if (moreFragment != null) {
             transaction.hide(moreFragment);
         }
 
     }
 
-    //重写onKeyUp()，实现连续两次点击方可退出当前应用
-
-    private boolean flag = true;
-    private static final int WHAT_RESET_BACK = 1;
-    private Handler handler = new Handler(){
-        public void handleMessage(Message msg){
-            Log.e("TAG", "handleMessage");
-            switch (msg.what) {
-                case WHAT_RESET_BACK :
-                    flag = true;//复原
-                    break;
-            }
-        }
-    };
-
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
-        if(keyCode == KeyEvent.KEYCODE_BACK && flag){
+        if (keyCode == KeyEvent.KEYCODE_BACK && flag) {
             Toast.makeText(MainActivity.this, "再点击一次，退出当前应用", Toast.LENGTH_SHORT).show();
             flag = false;
             //发送延迟消息
-            handler.sendEmptyMessageDelayed(WHAT_RESET_BACK,2000);
+            handler.sendEmptyMessageDelayed(WHAT_RESET_BACK, 2000);
             return true;
         }
 

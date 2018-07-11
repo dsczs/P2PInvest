@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.os.Bundle;
@@ -19,9 +18,9 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.filter.Approximator;
 import com.github.mikephil.charting.data.filter.Approximator.ApproximatorType;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
@@ -32,6 +31,11 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
     private LineChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
+    private int[] mColors = new int[]{
+            ColorTemplate.VORDIPLOM_COLORS[0],
+            ColorTemplate.VORDIPLOM_COLORS[1],
+            ColorTemplate.VORDIPLOM_COLORS[2]
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,7 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
         mChart = (LineChart) findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
-        
+
         mChart.setDrawGridBackground(false);
         mChart.setDescription("");
 
@@ -183,15 +187,9 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
         return true;
     }
 
-    private int[] mColors = new int[] {
-            ColorTemplate.VORDIPLOM_COLORS[0], 
-            ColorTemplate.VORDIPLOM_COLORS[1],
-            ColorTemplate.VORDIPLOM_COLORS[2]
-    };
-
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        
+
         mChart.resetTracking();
 
         tvX.setText("" + (mSeekBarX.getProgress()));
@@ -201,7 +199,7 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
         for (int i = 0; i < mSeekBarX.getProgress(); i++) {
             xVals.add((i) + "");
         }
- 
+
         ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 
         for (int z = 0; z < 3; z++) {

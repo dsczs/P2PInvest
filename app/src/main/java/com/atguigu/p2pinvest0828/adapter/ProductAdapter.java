@@ -49,7 +49,7 @@ public class ProductAdapter extends BaseAdapter {
         Log.e("TAG", "parent.getContext() = " + parent.getContext());
 
         int itemViewType = getItemViewType(position);
-        if(itemViewType == 0){
+        if (itemViewType == 0) {
             TextView tv = new TextView(parent.getContext());
             tv.setText("与子同行，奈何覆舟");
             tv.setTextColor(UIUtils.getColor(R.color.text_progress));
@@ -57,7 +57,7 @@ public class ProductAdapter extends BaseAdapter {
             return tv;
         }
 
-        if(position > 3){
+        if (position > 3) {
             position--;
         }
 
@@ -66,7 +66,7 @@ public class ProductAdapter extends BaseAdapter {
             convertView = View.inflate(parent.getContext(), R.layout.item_product_list, null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else{
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
         //装配数据
@@ -85,12 +85,13 @@ public class ProductAdapter extends BaseAdapter {
     //不同的position位置上，显示的具体的item的type值
     @Override
     public int getItemViewType(int position) {
-        if(position == 3){
+        if (position == 3) {
             return 0;
-        }else{
+        } else {
             return 1;
         }
     }
+
     //返回不同类型的item的个数
     @Override
     public int getViewTypeCount() {

@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.os.Bundle;
@@ -64,7 +63,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
         xAxis.setPosition(XAxisPosition.BOTTOM);
         xAxis.setSpaceBetweenLabels(0);
         xAxis.setDrawGridLines(false);
-        
+
         mChart.getAxisLeft().setDrawGridLines(false);
 
         // setting data
@@ -73,7 +72,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
 
         // add a nice and smooth animation
         mChart.animateY(2500);
-        
+
         mChart.getLegend().setEnabled(false);
 
         // Legend l = mChart.getLegend();
@@ -134,7 +133,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
                 break;
             }
             case R.id.actionToggleStartzero: {
-                
+
                 mChart.getAxisLeft().setStartAtZero(!mChart.getAxisLeft().isStartAtZeroEnabled());
                 mChart.getAxisRight().setStartAtZero(!mChart.getAxisRight().isStartAtZeroEnabled());
                 mChart.invalidate();

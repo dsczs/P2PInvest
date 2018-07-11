@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.buffer;
 
 import com.github.mikephil.charting.data.CandleEntry;
@@ -22,7 +21,7 @@ public class CandleShadowBuffer extends AbstractBuffer<CandleEntry> {
     @Override
     public void feed(List<CandleEntry> entries) {
 
-        int size = (int)Math.ceil((mTo - mFrom) * phaseX + mFrom);
+        int size = (int) Math.ceil((mTo - mFrom) * phaseX + mFrom);
 
         for (int i = mFrom; i < size; i++) {
 

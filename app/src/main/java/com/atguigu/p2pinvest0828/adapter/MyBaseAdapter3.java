@@ -12,6 +12,7 @@ import java.util.List;
 public abstract class MyBaseAdapter3<T> extends BaseAdapter {
 
     public List<T> list;
+
     //通过构造器初始化集合数据
     public MyBaseAdapter3(List<T> list) {
         this.list = list;
@@ -38,9 +39,9 @@ public abstract class MyBaseAdapter3<T> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         BaseHolder<T> holder;
-        if(convertView == null){
+        if (convertView == null) {
             holder = getHolder();
-        }else{
+        } else {
             holder = (BaseHolder<T>) convertView.getTag();
         }
 

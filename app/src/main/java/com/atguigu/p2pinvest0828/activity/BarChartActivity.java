@@ -31,6 +31,7 @@ public class BarChartActivity extends BaseActivity {
     @Bind(R.id.bar_chart)
     BarChart barChart;
     private Typeface mTf;//声明字体库
+
     @Override
     protected void initData() {
         mTf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
@@ -82,7 +83,7 @@ public class BarChartActivity extends BaseActivity {
     }
 
     @OnClick(R.id.iv_title_back)
-    public void back(View view){
+    public void back(View view) {
         removeCurrentActivity();
     }
 
@@ -104,7 +105,7 @@ public class BarChartActivity extends BaseActivity {
             entries.add(new BarEntry((int) (Math.random() * 70) + 30, i));
         }
 
-        BarDataSet d = new BarDataSet(entries, "New DataSet 1" );
+        BarDataSet d = new BarDataSet(entries, "New DataSet 1");
         //设置相邻的柱状图之间的距离
         d.setBarSpacePercent(40f);
         d.setColors(ColorTemplate.VORDIPLOM_COLORS);

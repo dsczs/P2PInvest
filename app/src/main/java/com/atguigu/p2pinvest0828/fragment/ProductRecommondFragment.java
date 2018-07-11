@@ -131,7 +131,7 @@ public class ProductRecommondFragment extends BaseFragment {
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    UIUtils.toast(tv.getText().toString(),false);
+                    UIUtils.toast(tv.getText().toString(), false);
                 }
             });
 

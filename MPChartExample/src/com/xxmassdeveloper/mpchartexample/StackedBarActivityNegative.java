@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -22,11 +21,11 @@ import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.filter.Approximator;
 import com.github.mikephil.charting.data.filter.Approximator.ApproximatorType;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.github.mikephil.charting.formatter.YAxisValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.text.DecimalFormat;
@@ -56,7 +55,7 @@ public class StackedBarActivityNegative extends DemoBase implements
 
         mChart.setDrawBarShadow(false);
         mChart.setDrawValueAboveBar(true);
-        
+
         mChart.getAxisLeft().setEnabled(false);
         mChart.getAxisRight().setStartAtZero(false);
         mChart.getAxisRight().setAxisMaxValue(25f);
@@ -79,29 +78,29 @@ public class StackedBarActivityNegative extends DemoBase implements
 
         // IMPORTANT: When using negative values in stacked bars, always make sure the negative values are in the array first
         ArrayList<BarEntry> yValues = new ArrayList<BarEntry>();
-        yValues.add(new BarEntry(new float[]{ -10, 10 }, 0));
-        yValues.add(new BarEntry(new float[]{ -12, 13 }, 1));
-        yValues.add(new BarEntry(new float[]{ -15, 15 }, 2));
-        yValues.add(new BarEntry(new float[]{ -17, 17 }, 3));
-        yValues.add(new BarEntry(new float[]{ -19, 20 }, 4));
-        yValues.add(new BarEntry(new float[]{ -19, 19 }, 5));
-        yValues.add(new BarEntry(new float[]{ -16, 16 }, 6));
-        yValues.add(new BarEntry(new float[]{ -13, 14 }, 7));
-        yValues.add(new BarEntry(new float[]{ -10, 11 }, 8));
-        yValues.add(new BarEntry(new float[]{ -5, 6 }, 9));
-        yValues.add(new BarEntry(new float[]{ -1, 2 }, 10));
+        yValues.add(new BarEntry(new float[]{-10, 10}, 0));
+        yValues.add(new BarEntry(new float[]{-12, 13}, 1));
+        yValues.add(new BarEntry(new float[]{-15, 15}, 2));
+        yValues.add(new BarEntry(new float[]{-17, 17}, 3));
+        yValues.add(new BarEntry(new float[]{-19, 20}, 4));
+        yValues.add(new BarEntry(new float[]{-19, 19}, 5));
+        yValues.add(new BarEntry(new float[]{-16, 16}, 6));
+        yValues.add(new BarEntry(new float[]{-13, 14}, 7));
+        yValues.add(new BarEntry(new float[]{-10, 11}, 8));
+        yValues.add(new BarEntry(new float[]{-5, 6}, 9));
+        yValues.add(new BarEntry(new float[]{-1, 2}, 10));
 
         BarDataSet set = new BarDataSet(yValues, "Age Distribution");
         set.setValueFormatter(new CustomFormatter());
         set.setValueTextSize(7f);
         set.setAxisDependency(YAxis.AxisDependency.RIGHT);
         set.setBarSpacePercent(40f);
-        set.setColors(new int[] {Color.rgb(67,67,72), Color.rgb(124,181,236)});
+        set.setColors(new int[]{Color.rgb(67, 67, 72), Color.rgb(124, 181, 236)});
         set.setStackLabels(new String[]{
                 "Men", "Women"
         });
 
-        String []xVals = new String[]{"0-10", "10-20", "20-30", "30-40", "40-50", "50-60", "60-70", "70-80", "80-90", "90-100", "100+"};
+        String[] xVals = new String[]{"0-10", "10-20", "20-30", "30-40", "40-50", "50-60", "60-70", "70-80", "80-90", "90-100", "100+"};
 
         BarData data = new BarData(xVals, set);
         mChart.setData(data);

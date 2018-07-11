@@ -32,7 +32,7 @@ public class GuiGuInvestActivity extends BaseActivity {
     }
 
     @OnClick(R.id.iv_title_back)
-    public void back(View view){
+    public void back(View view) {
         removeCurrentActivity();
     }
 

@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Typeface;
@@ -23,9 +22,9 @@ import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.data.filter.Approximator;
 import com.github.mikephil.charting.data.filter.Approximator.ApproximatorType;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class ScatterChartActivity extends DemoBase implements OnSeekBarChangeLis
     private TextView tvX, tvY;
 
     private Typeface tf;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +82,7 @@ public class ScatterChartActivity extends DemoBase implements OnSeekBarChangeLis
 
         YAxis yl = mChart.getAxisLeft();
         yl.setTypeface(tf);
-        
+
         mChart.getAxisRight().setEnabled(false);
 
         XAxis xl = mChart.getXAxis();

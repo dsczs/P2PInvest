@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -22,9 +21,9 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.xxmassdeveloper.mpchartexample.custom.MyMarkerView;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
@@ -36,7 +35,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
     private BarChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
-    
+
     private Typeface tf;
 
     @Override
@@ -60,7 +59,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         mChart.setDescription("");
 
 //        mChart.setDrawBorders(true);
-        
+
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom(false);
 
@@ -186,7 +185,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
 
         ArrayList<String> xVals = new ArrayList<String>();
         for (int i = 0; i < mSeekBarX.getProgress(); i++) {
-            xVals.add((i+1990) + "");
+            xVals.add((i + 1990) + "");
         }
 
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
@@ -227,7 +226,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
 
         BarData data = new BarData(xVals, dataSets);
 //        data.setValueFormatter(new LargeValueFormatter());
-        
+
         // add space between the dataset groups in percent of bar-width
         data.setGroupSpace(80f);
         data.setValueTypeface(tf);

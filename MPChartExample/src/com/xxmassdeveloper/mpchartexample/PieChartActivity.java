@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -20,10 +19,10 @@ import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
     private PieChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
-    
+
     private Typeface tf;
 
     @Override
@@ -58,7 +57,7 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
         mChart = (PieChart) findViewById(R.id.chart1);
         mChart.setUsePercentValues(true);
         mChart.setDescription("");
-        
+
         mChart.setDragDecelerationFrictionCoef(0.95f);
 
         tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
@@ -70,11 +69,11 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
 
         mChart.setTransparentCircleColor(Color.WHITE);
         mChart.setTransparentCircleAlpha(110);
-        
+
         mChart.setHoleRadius(58f);
         mChart.setTransparentCircleRadius(61f);
 
-        mChart.setDrawCenterText(true);   
+        mChart.setDrawCenterText(true);
 
         mChart.setRotationAngle(0);
         // enable rotation of the chart by touch

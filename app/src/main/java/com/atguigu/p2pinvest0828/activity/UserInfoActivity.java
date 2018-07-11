@@ -51,10 +51,59 @@ public class UserInfoActivity extends BaseActivity {
     @Bind(R.id.tv_user_change)
     TextView tvUserChange;
 
+    /**
+     * uri路径查询字段
+     *
+     * @param context
+     * @param uri
+     * @param selection
+     * @param selectionArgs
+     * @return
+     */
+    public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {column};
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+    public static boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    public static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    public static boolean isMedia(Uri uri) {
+        return "media".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is Google Photos.
+     */
+    public static boolean isGooglePhotosUri(Uri uri) {
+        return "com.google.android.apps.photos.content".equals(uri.getAuthority());
+    }
+
+    //重写启动新的activity以后的回调方法
+
     @Override
     protected void initData() {
 
     }
+    //将Bitmap保存到本地的操作
 
     @Override
     protected void initTitle() {
@@ -64,7 +113,7 @@ public class UserInfoActivity extends BaseActivity {
     }
 
     @OnClick(R.id.iv_title_back)
-    public void back(View view){
+    public void back(View view) {
         //1.销毁当前的页面
         this.removeCurrentActivity();
 
@@ -76,46 +125,43 @@ public class UserInfoActivity extends BaseActivity {
     }
 
     @OnClick(R.id.tv_user_change)
-    public void changeIcon(View view){
-        String[] items = new String[]{"图库","相机"};
+    public void changeIcon(View view) {
+        String[] items = new String[]{"图库", "相机"};
         //提供一个AlertDialog
         new AlertDialog.Builder(this)
-                    .setTitle("选择来源")
-                    .setItems(items, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            switch (which) {
-                                case 0 ://图库
+                .setTitle("选择来源")
+                .setItems(items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0://图库
 //                                    UIUtils.toast("图库",false);
-                                    //启动其他应用的activity:使用隐式意图
-                                    Intent picture = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                    startActivityForResult(picture, PICTURE);
-                                    break;
-                                case 1://相机
+                                //启动其他应用的activity:使用隐式意图
+                                Intent picture = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                startActivityForResult(picture, PICTURE);
+                                break;
+                            case 1://相机
 //                                    UIUtils.toast("相机",false);
-                                    Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                    startActivityForResult(camera, CAMERA);
-                                    break;
-                            }
+                                Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(camera, CAMERA);
+                                break;
                         }
-                    })
-                    .setCancelable(false)
-                    .show();
+                    }
+                })
+                .setCancelable(false)
+                .show();
     }
-
-    //重写启动新的activity以后的回调方法
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == CAMERA && resultCode == RESULT_OK && data != null){//相机
+        if (requestCode == CAMERA && resultCode == RESULT_OK && data != null) {//相机
             //获取intent中的图片对象
             Bundle extras = data.getExtras();
             Bitmap bitmap = (Bitmap) extras.get("data");
             //对获取到的bitmap进行压缩、圆形处理
-            bitmap = BitmapUtils.zoom(bitmap,ivUserIcon.getWidth(),ivUserIcon.getHeight());
+            bitmap = BitmapUtils.zoom(bitmap, ivUserIcon.getWidth(), ivUserIcon.getHeight());
             bitmap = BitmapUtils.circleBitmap(bitmap);
 
             //加载显示
@@ -126,7 +172,7 @@ public class UserInfoActivity extends BaseActivity {
             saveImage(bitmap);
 
 
-        }else if(requestCode == PICTURE && resultCode == RESULT_OK && data != null){//图库
+        } else if (requestCode == PICTURE && resultCode == RESULT_OK && data != null) {//图库
 
             //图库
             Uri selectedImage = data.getData();
@@ -139,7 +185,7 @@ public class UserInfoActivity extends BaseActivity {
             String pathResult = getPath(selectedImage);
             //存储--->内存
             Bitmap decodeFile = BitmapFactory.decodeFile(pathResult);
-            Bitmap zoomBitmap = BitmapUtils.zoom(decodeFile, ivUserIcon.getWidth(),ivUserIcon.getHeight());
+            Bitmap zoomBitmap = BitmapUtils.zoom(decodeFile, ivUserIcon.getWidth(), ivUserIcon.getHeight());
             //bitmap圆形裁剪
             Bitmap circleImage = BitmapUtils.circleBitmap(zoomBitmap);
 
@@ -154,39 +200,38 @@ public class UserInfoActivity extends BaseActivity {
 
 
     }
-    //将Bitmap保存到本地的操作
 
     /**
      * 数据的存储。（5种）
      * Bimap:内存层面的图片对象。
-     *
+     * <p>
      * 存储--->内存：
-     *      BitmapFactory.decodeFile(String filePath);
-     *      BitmapFactory.decodeStream(InputStream is);
+     * BitmapFactory.decodeFile(String filePath);
+     * BitmapFactory.decodeStream(InputStream is);
      * 内存--->存储：
-     *      bitmap.compress(Bitmap.CompressFormat.PNG,100,OutputStream os);
+     * bitmap.compress(Bitmap.CompressFormat.PNG,100,OutputStream os);
      */
     private void saveImage(Bitmap bitmap) {
         File filesDir;
-        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){//判断sd卡是否挂载
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {//判断sd卡是否挂载
             //路径1：storage/sdcard/Android/data/包名/files
             filesDir = this.getExternalFilesDir("");
 
-        }else{//手机内部存储
+        } else {//手机内部存储
             //路径：data/data/包名/files
             filesDir = this.getFilesDir();
 
         }
         FileOutputStream fos = null;
         try {
-            File file = new File(filesDir,"icon.png");
+            File file = new File(filesDir, "icon.png");
             fos = new FileOutputStream(file);
 
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100,fos);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }finally{
-            if(fos != null){
+        } finally {
+            if (fos != null) {
                 try {
                     fos.close();
                 } catch (IOException e) {
@@ -197,29 +242,29 @@ public class UserInfoActivity extends BaseActivity {
     }
 
     @OnClick(R.id.btn_user_logout)
-    public void logout(View view){//"退出登录"button的回调方法
+    public void logout(View view) {//"退出登录"button的回调方法
         //1.将保存在sp中的数据清除
         SharedPreferences sp = this.getSharedPreferences("user_info", Context.MODE_PRIVATE);
         sp.edit().clear().commit();//清除数据操作必须提交；提交以后，文件仍存在，只是文件中的数据被清除了
         //2.将本地保存的图片的file删除
         File filesDir;
-        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){//判断sd卡是否挂载
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {//判断sd卡是否挂载
             //路径1：storage/sdcard/Android/data/包名/files
             filesDir = this.getExternalFilesDir("");
 
-        }else{//手机内部存储
+        } else {//手机内部存储
             //路径：data/data/包名/files
             filesDir = this.getFilesDir();
 
         }
-        File file = new File(filesDir,"icon.png");
-        if(file.exists()){
+        File file = new File(filesDir, "icon.png");
+        if (file.exists()) {
             file.delete();//删除存储中的文件
         }
         //3.销毁所有的activity
         this.removeAll();
         //4.重新进入首页面
-        this.goToActivity(MainActivity.class,null);
+        this.goToActivity(MainActivity.class, null);
     }
 
     /**
@@ -283,54 +328,7 @@ public class UserInfoActivity extends BaseActivity {
         return null;
     }
 
-    /**
-     * uri路径查询字段
-     *
-     * @param context
-     * @param uri
-     * @param selection
-     * @param selectionArgs
-     * @return
-     */
-    public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
-        Cursor cursor = null;
-        final String column = "_data";
-        final String[] projection = {column};
-        try {
-            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
-            if (cursor != null && cursor.moveToFirst()) {
-                final int index = cursor.getColumnIndexOrThrow(column);
-                return cursor.getString(index);
-            }
-        } finally {
-            if (cursor != null)
-                cursor.close();
-        }
-        return null;
-    }
-
-
     private boolean isExternalStorageDocument(Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
-    }
-
-    public static boolean isDownloadsDocument(Uri uri) {
-        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
-    }
-
-    public static boolean isMediaDocument(Uri uri) {
-        return "com.android.providers.media.documents".equals(uri.getAuthority());
-    }
-
-    public static boolean isMedia(Uri uri) {
-        return "media".equals(uri.getAuthority());
-    }
-
-    /**
-     * @param uri The Uri to check.
-     * @return Whether the Uri authority is Google Photos.
-     */
-    public static boolean isGooglePhotosUri(Uri uri) {
-        return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 }

@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.os.Bundle;
@@ -22,8 +21,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.filter.Approximator;
 import com.github.mikephil.charting.data.filter.Approximator.ApproximatorType;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.xxmassdeveloper.mpchartexample.custom.MyMarkerView;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
@@ -58,7 +57,7 @@ public class InvertedLineChartActivity extends DemoBase implements OnSeekBarChan
         mChart = (LineChart) findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
         mChart.setDrawGridBackground(false);
-        
+
         // no description text
         mChart.setDescription("");
 
@@ -88,13 +87,13 @@ public class InvertedLineChartActivity extends DemoBase implements OnSeekBarChan
         // enable/disable highlight indicators (the lines that indicate the
         // highlighted Entry)
         mChart.setHighlightEnabled(false);
-        
+
         XAxis xl = mChart.getXAxis();
         xl.setAvoidFirstLastClipping(true);
-        
+
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setInverted(true);
-        
+
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setEnabled(false);
 
@@ -280,8 +279,8 @@ public class InvertedLineChartActivity extends DemoBase implements OnSeekBarChan
         for (int i = 0; i < count; i++) {
             float mult = (range + 1);
             float val = (float) (Math.random() * mult) + 3;// + (float)
-                                                           // ((mult *
-                                                           // 0.1) / 10);
+            // ((mult *
+            // 0.1) / 10);
             yVals.add(new Entry(val, i));
         }
 

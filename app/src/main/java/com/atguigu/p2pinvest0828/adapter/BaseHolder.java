@@ -12,10 +12,10 @@ public abstract class BaseHolder<T> {
 
     private T data;
 
-    public BaseHolder(){
+    public BaseHolder() {
         rootView = initView();
         rootView.setTag(this);
-        ButterKnife.bind(this,rootView);
+        ButterKnife.bind(this, rootView);
     }
 
     //提供item的布局
@@ -29,6 +29,7 @@ public abstract class BaseHolder<T> {
         this.data = data;
         refreshData();
     }
+
     //装配过程
     protected abstract void refreshData();
 

@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Context;
@@ -29,7 +28,7 @@ import java.util.List;
 /**
  * Demonstrates the use of charts inside a ListView. IMPORTANT: provide a
  * specific height attribute for the chart inside your listview-item
- * 
+ *
  * @author Philipp Jahoda
  */
 public class ListViewBarChartActivity extends DemoBase {
@@ -40,7 +39,7 @@ public class ListViewBarChartActivity extends DemoBase {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_listview_chart);
-        
+
         ListView lv = (ListView) findViewById(R.id.listView1);
 
         ArrayList<BarData> list = new ArrayList<BarData>();
@@ -52,6 +51,50 @@ public class ListViewBarChartActivity extends DemoBase {
 
         ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
         lv.setAdapter(cda);
+    }
+
+    /**
+     * generates a random ChartData object with just one DataSet
+     *
+     * @return
+     */
+    private BarData generateData(int cnt) {
+
+        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
+
+        for (int i = 0; i < 12; i++) {
+            entries.add(new BarEntry((int) (Math.random() * 70) + 30, i));
+        }
+
+        BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
+        d.setBarSpacePercent(20f);
+        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        d.setBarShadowColor(Color.rgb(203, 203, 203));
+
+        ArrayList<BarDataSet> sets = new ArrayList<BarDataSet>();
+        sets.add(d);
+
+        BarData cd = new BarData(getMonths(), sets);
+        return cd;
+    }
+
+    private ArrayList<String> getMonths() {
+
+        ArrayList<String> m = new ArrayList<String>();
+        m.add("Jan");
+        m.add("Feb");
+        m.add("Mar");
+        m.add("Apr");
+        m.add("May");
+        m.add("Jun");
+        m.add("Jul");
+        m.add("Aug");
+        m.add("Sep");
+        m.add("Okt");
+        m.add("Nov");
+        m.add("Dec");
+
+        return m;
     }
 
     private class ChartDataAdapter extends ArrayAdapter<BarData> {
@@ -95,12 +138,12 @@ public class ListViewBarChartActivity extends DemoBase {
             xAxis.setPosition(XAxisPosition.BOTTOM);
             xAxis.setTypeface(mTf);
             xAxis.setDrawGridLines(false);
-            
+
             YAxis leftAxis = holder.chart.getAxisLeft();
             leftAxis.setTypeface(mTf);
             leftAxis.setLabelCount(5, false);
             leftAxis.setSpaceTop(15f);
-            
+
             YAxis rightAxis = holder.chart.getAxisRight();
             rightAxis.setTypeface(mTf);
             rightAxis.setLabelCount(5, false);
@@ -108,7 +151,7 @@ public class ListViewBarChartActivity extends DemoBase {
 
             // set data
             holder.chart.setData(data);
-            
+
             // do not forget to refresh the chart
 //            holder.chart.invalidate();
             holder.chart.animateY(700, Easing.EasingOption.EaseInCubic);
@@ -120,49 +163,5 @@ public class ListViewBarChartActivity extends DemoBase {
 
             BarChart chart;
         }
-    }
-
-    /**
-     * generates a random ChartData object with just one DataSet
-     * 
-     * @return
-     */
-    private BarData generateData(int cnt) {
-
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-
-        for (int i = 0; i < 12; i++) {
-            entries.add(new BarEntry((int) (Math.random() * 70) + 30, i));
-        }
-
-        BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);    
-        d.setBarSpacePercent(20f);
-        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
-        d.setBarShadowColor(Color.rgb(203, 203, 203));
-        
-        ArrayList<BarDataSet> sets = new ArrayList<BarDataSet>();
-        sets.add(d);
-        
-        BarData cd = new BarData(getMonths(), sets);
-        return cd;
-    }
-
-    private ArrayList<String> getMonths() {
-
-        ArrayList<String> m = new ArrayList<String>();
-        m.add("Jan");
-        m.add("Feb");
-        m.add("Mar");
-        m.add("Apr");
-        m.add("May");
-        m.add("Jun");
-        m.add("Jul");
-        m.add("Aug");
-        m.add("Sep");
-        m.add("Okt");
-        m.add("Nov");
-        m.add("Dec");
-
-        return m;
     }
 }

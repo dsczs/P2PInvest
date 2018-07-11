@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.components;
 
 import android.graphics.Color;
@@ -106,6 +105,15 @@ public abstract class ComponentBase {
     }
 
     /**
+     * returns the text size that is currently set for the labels
+     *
+     * @return
+     */
+    public float getTextSize() {
+        return mTextSize;
+    }
+
+    /**
      * sets the size of the label text in pixels min = 6f, max = 24f, default
      * 10f
      *
@@ -122,12 +130,12 @@ public abstract class ComponentBase {
     }
 
     /**
-     * returns the text size that is currently set for the labels
+     * Returns the text color that is set for the labels.
      *
      * @return
      */
-    public float getTextSize() {
-        return mTextSize;
+    public int getTextColor() {
+        return mTextColor;
     }
 
     /**
@@ -141,12 +149,12 @@ public abstract class ComponentBase {
     }
 
     /**
-     * Returns the text color that is set for the labels.
+     * Returns true if this comonent is enabled (should be drawn), false if not.
      *
      * @return
      */
-    public int getTextColor() {
-        return mTextColor;
+    public boolean isEnabled() {
+        return mEnabled;
     }
 
     /**
@@ -158,14 +166,5 @@ public abstract class ComponentBase {
      */
     public void setEnabled(boolean enabled) {
         mEnabled = enabled;
-    }
-
-    /**
-     * Returns true if this comonent is enabled (should be drawn), false if not.
-     *
-     * @return
-     */
-    public boolean isEnabled() {
-        return mEnabled;
     }
 }

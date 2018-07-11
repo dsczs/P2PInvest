@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.os.Bundle;
@@ -42,14 +41,14 @@ public class ScrollViewActivity extends DemoBase {
         xAxis.setDrawGridLines(false);
 
         mChart.getAxisLeft().setDrawGridLines(false);
-        
+
         mChart.getLegend().setEnabled(false);
 
         setData(10);
     }
-    
+
     private void setData(int count) {
-        
+
         ArrayList<BarEntry> yVals = new ArrayList<BarEntry>();
         ArrayList<String> xVals = new ArrayList<String>();
 

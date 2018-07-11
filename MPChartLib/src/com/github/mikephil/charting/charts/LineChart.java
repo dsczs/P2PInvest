@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
@@ -10,7 +9,7 @@ import com.github.mikephil.charting.renderer.LineChartRenderer;
 
 /**
  * Chart that draws lines, surfaces, circles, ...
- * 
+ *
  * @author Philipp Jahoda
  */
 public class LineChart extends BarLineChartBase<LineData> implements LineDataProvider {
@@ -41,7 +40,7 @@ public class LineChart extends BarLineChartBase<LineData> implements LineDataPro
         if (mDeltaX == 0 && mData.getYValCount() > 0)
             mDeltaX = 1;
     }
-    
+
     @Override
     public LineData getLineData() {
         return mData;

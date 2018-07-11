@@ -1,9 +1,8 @@
-
 package com.github.mikephil.charting.utils;
 
 /**
  * Point encapsulating two double values.
- * 
+ *
  * @author Philipp Jahoda
  */
 public class PointD {
@@ -16,7 +15,9 @@ public class PointD {
         this.y = y;
     }
 
-    /** returns a string representation of the object */
+    /**
+     * returns a string representation of the object
+     */
     public String toString() {
         return "PointD, x: " + x + ", y: " + y;
     }

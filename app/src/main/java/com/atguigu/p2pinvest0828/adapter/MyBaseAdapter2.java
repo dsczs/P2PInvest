@@ -13,6 +13,7 @@ import java.util.List;
 public abstract class MyBaseAdapter2<T> extends BaseAdapter {
 
     public List<T> list;
+
     //通过构造器初始化集合数据
     public MyBaseAdapter2(List<T> list) {
         this.list = list;
@@ -39,10 +40,10 @@ public abstract class MyBaseAdapter2<T> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        if(convertView == null){
+        if (convertView == null) {
             convertView = initView(parent.getContext());
             holder = new ViewHolder(convertView);
-        }else{
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
@@ -50,17 +51,18 @@ public abstract class MyBaseAdapter2<T> extends BaseAdapter {
         T t = list.get(position);
 
         //装配数据
-        setData(convertView,t);
+        setData(convertView, t);
 
         return convertView;
     }
+
     //装配数据的操作
     protected abstract void setData(View convertView, T t);
 
     //提供具体的item layout的布局
     protected abstract View initView(Context context);
 
-    class ViewHolder{
+    class ViewHolder {
         public ViewHolder(View view) {
             view.setTag(this);
         }

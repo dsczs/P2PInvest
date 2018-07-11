@@ -60,6 +60,7 @@ public abstract class BaseFragment extends Fragment {
 
         return loadingPage;
     }
+
     //为了保证loadingPage不为null
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -94,7 +95,7 @@ public abstract class BaseFragment extends Fragment {
         ButterKnife.unbind(this);
     }
 
-    public void show(){
+    public void show() {
         loadingPage.show();
     }
 }

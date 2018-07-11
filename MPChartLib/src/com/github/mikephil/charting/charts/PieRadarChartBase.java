@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.charts;
 
 import android.animation.ObjectAnimator;
@@ -27,23 +26,28 @@ import java.util.List;
 
 /**
  * Baseclass of PieChart and RadarChart.
- * 
+ *
  * @author Philipp Jahoda
  */
 public abstract class PieRadarChartBase<T extends ChartData<? extends DataSet<? extends Entry>>>
         extends Chart<T> {
 
-    /** holds the normalized version of the current rotation angle of the chart */
-    private float mRotationAngle = 270f;
-
-    /** holds the raw version of the current rotation angle of the chart */
-    private float mRawRotationAngle = 270f;
-
-    /** flag that indicates if rotation is enabled or not */
+    /**
+     * flag that indicates if rotation is enabled or not
+     */
     protected boolean mRotateEnabled = true;
-
-    /** Sets the minimum offset (padding) around the chart, defaults to 10 */
+    /**
+     * Sets the minimum offset (padding) around the chart, defaults to 10
+     */
     protected float mMinOffset = 10.f;
+    /**
+     * holds the normalized version of the current rotation angle of the chart
+     */
+    private float mRotationAngle = 270f;
+    /**
+     * holds the raw version of the current rotation angle of the chart
+     */
+    private float mRawRotationAngle = 270f;
 
     public PieRadarChartBase(Context context) {
         super(context);
@@ -104,9 +108,9 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends DataSet<? 
         float legendLeft = 0f, legendRight = 0f, legendBottom = 0f, legendTop = 0f;
 
         if (mLegend != null && mLegend.isEnabled()) {
-            
-            float fullLegendWidth = Math.min(mLegend.mNeededWidth, 
-                    mViewPortHandler.getChartWidth() * mLegend.getMaxSizePercent()) + 
+
+            float fullLegendWidth = Math.min(mLegend.mNeededWidth,
+                    mViewPortHandler.getChartWidth() * mLegend.getMaxSizePercent()) +
                     mLegend.getFormSize() + mLegend.getFormToTextSpace();
 
             if (mLegend.getPosition() == LegendPosition.RIGHT_OF_CHART_CENTER) {
@@ -243,7 +247,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends DataSet<? 
      * returns the angle relative to the chart center for the given point on the
      * chart in degrees. The angle is always between 0 and 360°, 0° is NORTH,
      * 90° is EAST, ...
-     * 
+     *
      * @param x
      * @param y
      * @return
@@ -274,10 +278,10 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends DataSet<? 
     /**
      * Calculates the position around a center point, depending on the distance
      * from the center, and the angle of the position around the center.
-     * 
+     *
      * @param center
      * @param dist
-     * @param angle in degrees, converted to radians internally
+     * @param angle  in degrees, converted to radians internally
      * @return
      */
     protected PointF getPosition(PointF center, float dist, float angle) {
@@ -325,22 +329,11 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends DataSet<? 
     /**
      * Returns the xIndex for the given angle around the center of the chart.
      * Returns -1 if not found / outofbounds.
-     * 
+     *
      * @param angle
      * @return
      */
     public abstract int getIndexForAngle(float angle);
-
-    /**
-     * Set an offset for the rotation of the RadarChart in degrees. Default 270f
-     * --> top (NORTH)
-     * 
-     * @param angle
-     */
-    public void setRotationAngle(float angle) {
-        mRawRotationAngle = angle;
-        mRotationAngle = Utils.getNormalizedAngle(mRawRotationAngle);
-    }
 
     /**
      * gets the raw version of the current rotation angle of the pie chart the
@@ -365,18 +358,19 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends DataSet<? 
     }
 
     /**
-     * Set this to true to enable the rotation / spinning of the chart by touch.
-     * Set it to false to disable it. Default: true
-     * 
-     * @param enabled
+     * Set an offset for the rotation of the RadarChart in degrees. Default 270f
+     * --> top (NORTH)
+     *
+     * @param angle
      */
-    public void setRotationEnabled(boolean enabled) {
-        mRotateEnabled = enabled;
+    public void setRotationAngle(float angle) {
+        mRawRotationAngle = angle;
+        mRotationAngle = Utils.getNormalizedAngle(mRawRotationAngle);
     }
 
     /**
      * Returns true if rotation of the chart by touch is enabled, false if not.
-     * 
+     *
      * @return
      */
     public boolean isRotationEnabled() {
@@ -384,8 +378,18 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends DataSet<? 
     }
 
     /**
+     * Set this to true to enable the rotation / spinning of the chart by touch.
+     * Set it to false to disable it. Default: true
+     *
+     * @param enabled
+     */
+    public void setRotationEnabled(boolean enabled) {
+        mRotateEnabled = enabled;
+    }
+
+    /**
      * returns the diameter of the pie- or radar-chart
-     * 
+     *
      * @return
      */
     public float getDiameter() {
@@ -395,14 +399,14 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends DataSet<? 
 
     /**
      * Returns the radius of the chart in pixels.
-     * 
+     *
      * @return
      */
     public abstract float getRadius();
 
     /**
      * Returns the required offset for the chart legend.
-     * 
+     *
      * @return
      */
     protected abstract float getRequiredLegendOffset();
@@ -410,7 +414,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends DataSet<? 
     /**
      * Returns the base offset needed for the chart without calculating the
      * legend size.
-     * 
+     *
      * @return
      */
     protected abstract float getRequiredBaseOffset();
@@ -461,7 +465,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends DataSet<? 
 
     /**
      * Applys a spin animation to the Chart.
-     * 
+     *
      * @param durationmillis
      * @param fromangle
      * @param toangle

@@ -49,7 +49,7 @@ public class HomeFragment extends BaseFragment {
     RoundProgress roundProHome;
     @Bind(R.id.tv_home_yearrate)
     TextView tvHomeYearrate;
-
+    private int currentProress;
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -64,7 +64,7 @@ public class HomeFragment extends BaseFragment {
             }
         }
     };
-    private int currentProress;
+    private Index index;
 
     @Override
     protected RequestParams getParams() {
@@ -77,8 +77,6 @@ public class HomeFragment extends BaseFragment {
         return AppNetConfig.INDEX;
 //        return null;
     }
-
-    private Index index;
 
     @Override
     protected void initData(String content) {

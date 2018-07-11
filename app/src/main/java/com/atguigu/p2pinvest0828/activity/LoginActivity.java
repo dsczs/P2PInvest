@@ -57,9 +57,9 @@ public class LoginActivity extends BaseActivity {
     }
 
     @OnClick(R.id.iv_title_back)
-    public void back(View view){
+    public void back(View view) {
         removeAll();
-        goToActivity(MainActivity.class,null);
+        goToActivity(MainActivity.class, null);
     }
 
     @Override
@@ -68,21 +68,21 @@ public class LoginActivity extends BaseActivity {
     }
 
     @OnClick(R.id.btn_login)
-    public void login(View view){//登录按钮的点击事件
+    public void login(View view) {//登录按钮的点击事件
         String number = etLoginNumber.getText().toString().trim();
         String pwd = etLoginPwd.getText().toString().trim();
-        if(!TextUtils.isEmpty(number) && !TextUtils.isEmpty(pwd)){
+        if (!TextUtils.isEmpty(number) && !TextUtils.isEmpty(pwd)) {
             String url = AppNetConfig.LOGIN;
             RequestParams params = new RequestParams();
-            params.put("phone",number);
+            params.put("phone", number);
             params.put("password", MD5Utils.MD5(pwd));
-            client.post(url,params,new AsyncHttpResponseHandler(){
+            client.post(url, params, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(String content) {//200 404
                     //解析json
                     JSONObject jsonObject = JSON.parseObject(content);
                     boolean success = jsonObject.getBoolean("success");
-                    if(success){
+                    if (success) {
 
                         //解析json数据，生成User对象
                         String data = jsonObject.getString("data");
@@ -92,20 +92,20 @@ public class LoginActivity extends BaseActivity {
                         saveUser(user);
                         //重新加载界面
                         removeAll();
-                        goToActivity(MainActivity.class,null);
+                        goToActivity(MainActivity.class, null);
 
-                    }else{
+                    } else {
                         Toast.makeText(LoginActivity.this, "用户名不存在或密码不正确", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Throwable error, String content) {
-                    UIUtils.toast("联网失败",false);
+                    UIUtils.toast("联网失败", false);
 
                 }
             });
-        }else{
+        } else {
             UIUtils.toast("用户名或密码不能为空", false);
         }
     }

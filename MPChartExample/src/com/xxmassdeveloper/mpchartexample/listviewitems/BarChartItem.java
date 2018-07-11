@@ -14,9 +14,9 @@ import com.github.mikephil.charting.data.ChartData;
 import com.xxmassdeveloper.mpchartexample.R;
 
 public class BarChartItem extends ChartItem {
-    
+
     private Typeface mTf;
-    
+
     public BarChartItem(ChartData<?> cd, Context c) {
         super(cd);
 
@@ -57,29 +57,29 @@ public class BarChartItem extends ChartItem {
         xAxis.setTypeface(mTf);
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(true);
-        
+
         YAxis leftAxis = holder.chart.getAxisLeft();
         leftAxis.setTypeface(mTf);
         leftAxis.setLabelCount(5, false);
         leftAxis.setSpaceTop(20f);
-       
+
         YAxis rightAxis = holder.chart.getAxisRight();
         rightAxis.setTypeface(mTf);
         rightAxis.setLabelCount(5, false);
         rightAxis.setSpaceTop(20f);
 
         mChartData.setValueTypeface(mTf);
-        
+
         // set data
         holder.chart.setData((BarData) mChartData);
-        
+
         // do not forget to refresh the chart
 //        holder.chart.invalidate();
         holder.chart.animateY(700);
 
         return convertView;
     }
-    
+
     private static class ViewHolder {
         BarChart chart;
     }

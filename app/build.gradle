@@ -46,11 +46,11 @@ android {
 //    }
 
     //优化2：
-    productFlavors{
-        wandoujia{
+    productFlavors {
+        wandoujia {
             //manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
         }
-        xiaomi{
+        xiaomi {
             //manifestPlaceholders=[UMENG_CHANNEL_VALUE: "xiaomi"]
         }
     }

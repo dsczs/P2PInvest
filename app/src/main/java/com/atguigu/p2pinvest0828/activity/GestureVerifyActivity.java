@@ -21,9 +21,13 @@ import com.atguigu.gesturelock.widget.GestureDrawline;
 import com.atguigu.p2pinvest0828.R;
 
 public class GestureVerifyActivity extends Activity implements View.OnClickListener {
-    /** 手机号码*/
+    /**
+     * 手机号码
+     */
     public static final String PARAM_PHONE_NUMBER = "PARAM_PHONE_NUMBER";
-    /** 意图 */
+    /**
+     * 意图
+     */
     public static final String PARAM_INTENT_CODE = "PARAM_INTENT_CODE";
     private RelativeLayout mTopLayout;
     private TextView mTextTitle;
@@ -70,7 +74,7 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
         mTextForget = (TextView) findViewById(R.id.text_forget_gesture);
         mTextOther = (TextView) findViewById(R.id.text_other_account);
 
-        String inputCode = mSharedPreferences.getString("inputCode","1235789");
+        String inputCode = mSharedPreferences.getString("inputCode", "1235789");
         // 初始化一个显示各个点的viewGroup
         mGestureContentView = new GestureContentView(this, true, inputCode,
                 new GestureDrawline.GestureCallBack() {
@@ -120,13 +124,12 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
         }
 
         StringBuilder builder = new StringBuilder();
-        builder.append(phoneNumber.subSequence(0,3));
+        builder.append(phoneNumber.subSequence(0, 3));
         builder.append("****");
-        builder.append(phoneNumber.subSequence(7,11));
+        builder.append(phoneNumber.subSequence(7, 11));
 
         return builder.toString();
     }
-
 
 
     @Override

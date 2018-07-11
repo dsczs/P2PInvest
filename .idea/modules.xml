@@ -3,21 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GestureLock/GestureLock.iml" filepath="$PROJECT_DIR$/GestureLock/GestureLock.iml" />
-      <module fileurl="file://E:\www\Android\P2PInvest\GestureLock\GestureLock.iml" filepath="E:\www\Android\P2PInvest\GestureLock\GestureLock.iml" />
       <module fileurl="file://$PROJECT_DIR$/MPChartExample/MPChartExample.iml" filepath="$PROJECT_DIR$/MPChartExample/MPChartExample.iml" />
-      <module fileurl="file://E:\www\Android\P2PInvest\MPChartExample\MPChartExample.iml" filepath="E:\www\Android\P2PInvest\MPChartExample\MPChartExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/MPChartLib/MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib/MPChartLib.iml" />
-      <module fileurl="file://E:\www\Android\P2PInvest\MPChartLib\MPChartLib.iml" filepath="E:\www\Android\P2PInvest\MPChartLib\MPChartLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/P2PInvest.iml" filepath="$PROJECT_DIR$/P2PInvest.iml" />
       <module fileurl="file://E:\www\Android\P2PInvest\P2PInvest0828.iml" filepath="E:\www\Android\P2PInvest\P2PInvest0828.iml" />
       <module fileurl="file://$PROJECT_DIR$/ViewPagerIndicator/ViewPagerIndicator.iml" filepath="$PROJECT_DIR$/ViewPagerIndicator/ViewPagerIndicator.iml" />
-      <module fileurl="file://E:\www\Android\P2PInvest\ViewPagerIndicator\ViewPagerIndicator.iml" filepath="E:\www\Android\P2PInvest\ViewPagerIndicator\ViewPagerIndicator.iml" />
       <module fileurl="file://$PROJECT_DIR$/alipay_demo/alipay_demo.iml" filepath="$PROJECT_DIR$/alipay_demo/alipay_demo.iml" />
-      <module fileurl="file://E:\www\Android\P2PInvest\alipay_demo\alipay_demo.iml" filepath="E:\www\Android\P2PInvest\alipay_demo\alipay_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://E:\www\Android\P2PInvest\app\app.iml" filepath="E:\www\Android\P2PInvest\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/contexttest/contexttest.iml" filepath="$PROJECT_DIR$/contexttest/contexttest.iml" />
-      <module fileurl="file://E:\www\Android\P2PInvest\contexttest\contexttest.iml" filepath="E:\www\Android\P2PInvest\contexttest\contexttest.iml" />
     </modules>
   </component>
 </project>

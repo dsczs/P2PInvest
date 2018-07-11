@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -31,7 +30,7 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
     private LineChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
-    
+
     private Typeface tf;
 
     @Override
@@ -73,25 +72,25 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
         mChart.setPinchZoom(false);
 
         mChart.setDrawGridBackground(false);
-        
+
         tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
-        
+
         XAxis x = mChart.getXAxis();
         x.setTypeface(tf);
         x.setEnabled(false);
-        
+
         YAxis y = mChart.getAxisLeft();
         y.setTypeface(tf);
         y.setLabelCount(5, false);
         y.setEnabled(false);
-        
+
         mChart.getAxisRight().setEnabled(false);
 
         // add data
         setData(45, 100);
-        
+
         mChart.getLegend().setEnabled(false);
-        
+
         mChart.animateXY(2000, 2000);
 
         // dont forget to refresh the drawing
@@ -205,7 +204,7 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
                 } else {
                     mChart.disableFiltering();
                 }
-                mChart.invalidate();            
+                mChart.invalidate();
                 break;
             }
             case R.id.actionSave: {
@@ -251,7 +250,7 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
         ArrayList<String> xVals = new ArrayList<String>();
         for (int i = 0; i < count; i++) {
-            xVals.add((1990 +i) + "");
+            xVals.add((1990 + i) + "");
         }
 
         ArrayList<Entry> vals1 = new ArrayList<Entry>();
@@ -259,24 +258,24 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
         for (int i = 0; i < count; i++) {
             float mult = (range + 1);
             float val = (float) (Math.random() * mult) + 20;// + (float)
-                                                           // ((mult *
-                                                           // 0.1) / 10);
+            // ((mult *
+            // 0.1) / 10);
             vals1.add(new Entry(val, i));
         }
-        
+
         // create a dataset and give it a type
         LineDataSet set1 = new LineDataSet(vals1, "DataSet 1");
         set1.setDrawCubic(true);
         set1.setCubicIntensity(0.2f);
         //set1.setDrawFilled(true);
-        set1.setDrawCircles(false); 
+        set1.setDrawCircles(false);
         set1.setLineWidth(2f);
         set1.setCircleSize(5f);
         set1.setHighLightColor(Color.rgb(244, 117, 117));
         set1.setColor(Color.rgb(104, 241, 175));
         set1.setFillColor(ColorTemplate.getHoloBlue());
         set1.setDrawHorizontalHighlightIndicator(false);
-        
+
         // create a data object with the datasets
         LineData data = new LineData(xVals, set1);
         data.setValueTypeface(tf);

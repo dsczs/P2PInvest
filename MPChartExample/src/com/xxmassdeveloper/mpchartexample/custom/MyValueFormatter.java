@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 public class MyValueFormatter implements ValueFormatter {
 
     private DecimalFormat mFormat;
-    
+
     public MyValueFormatter() {
         mFormat = new DecimalFormat("###,###,###,##0.0");
     }

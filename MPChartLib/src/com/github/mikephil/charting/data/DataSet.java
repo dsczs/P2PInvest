@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.data;
 
 import android.content.Context;
@@ -6,10 +5,10 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 
 import com.github.mikephil.charting.components.YAxis.AxisDependency;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.formatter.DefaultValueFormatter;
-import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,66 +42,54 @@ public abstract class DataSet<T extends Entry> {
      * the minimum y-value in the y-value array
      */
     protected float mYMin = 0.0f;
-
-    /**
-     * the total sum of all y-values
-     */
-    private float mYValueSum = 0f;
-
     /**
      * the last start value used for calcMinMax
      */
     protected int mLastStart = 0;
-
     /**
      * the last end value used for calcMinMax
      */
     protected int mLastEnd = 0;
-
-    /**
-     * label that describes the DataSet or the data the DataSet represents
-     */
-    private String mLabel = "DataSet";
-
-    /**
-     * flag that indicates if the DataSet is visible or not
-     */
-    private boolean mVisible = true;
-
     /**
      * if true, y-values are drawn on the chart
      */
     protected boolean mDrawValues = true;
-
-    /**
-     * the color used for the value-text
-     */
-    private int mValueColor = Color.BLACK;
-
-    /**
-     * the size of the value-text labels
-     */
-    private float mValueTextSize = 17f;
-
-    /**
-     * the typeface used for the value text
-     */
-    private Typeface mValueTypeface;
-
     /**
      * custom formatter that is used instead of the auto-formatter if set
      */
     protected transient ValueFormatter mValueFormatter;
-
     /**
      * this specifies which axis this DataSet should be plotted against
      */
     protected AxisDependency mAxisDependency = AxisDependency.LEFT;
-
     /**
      * if true, value highlightning is enabled
      */
     protected boolean mHighlightEnabled = true;
+    /**
+     * the total sum of all y-values
+     */
+    private float mYValueSum = 0f;
+    /**
+     * label that describes the DataSet or the data the DataSet represents
+     */
+    private String mLabel = "DataSet";
+    /**
+     * flag that indicates if the DataSet is visible or not
+     */
+    private boolean mVisible = true;
+    /**
+     * the color used for the value-text
+     */
+    private int mValueColor = Color.BLACK;
+    /**
+     * the size of the value-text labels
+     */
+    private float mValueTextSize = 17f;
+    /**
+     * the typeface used for the value text
+     */
+    private Typeface mValueTypeface;
 
     /**
      * Creates a new DataSet object with the given values it represents. Also, a
@@ -422,15 +409,6 @@ public abstract class DataSet<T extends Entry> {
     }
 
     /**
-     * Sets the label string that describes the DataSet.
-     *
-     * @return
-     */
-    public void setLabel(String label) {
-        mLabel = label;
-    }
-
-    /**
      * Returns the label string that describes the DataSet.
      *
      * @return
@@ -440,13 +418,12 @@ public abstract class DataSet<T extends Entry> {
     }
 
     /**
-     * Set the visibility of this DataSet. If not visible, the DataSet will not
-     * be drawn to the chart upon refreshing it.
+     * Sets the label string that describes the DataSet.
      *
-     * @param visible
+     * @return
      */
-    public void setVisible(boolean visible) {
-        mVisible = visible;
+    public void setLabel(String label) {
+        mLabel = label;
     }
 
     /**
@@ -457,6 +434,16 @@ public abstract class DataSet<T extends Entry> {
      */
     public boolean isVisible() {
         return mVisible;
+    }
+
+    /**
+     * Set the visibility of this DataSet. If not visible, the DataSet will not
+     * be drawn to the chart upon refreshing it.
+     *
+     * @param visible
+     */
+    public void setVisible(boolean visible) {
+        mVisible = visible;
     }
 
     /**
@@ -683,19 +670,6 @@ public abstract class DataSet<T extends Entry> {
     /**
      * Sets the colors that should be used fore this DataSet. Colors are reused
      * as soon as the number of Entries the DataSet represents is higher than
-     * the size of the colors array. If you are using colors from the resources,
-     * make sure that the colors are already prepared (by calling
-     * getResources().getColor(...)) before adding them to the DataSet.
-     *
-     * @param colors
-     */
-    public void setColors(int[] colors) {
-        this.mColors = ColorTemplate.createColors(colors);
-    }
-
-    /**
-     * Sets the colors that should be used fore this DataSet. Colors are reused
-     * as soon as the number of Entries the DataSet represents is higher than
      * the size of the colors array. You can use
      * "new int[] { R.color.red, R.color.green, ... }" to provide colors for
      * this method. Internally, the colors are resolved using
@@ -726,23 +700,25 @@ public abstract class DataSet<T extends Entry> {
     }
 
     /**
-     * Sets the one and ONLY color that should be used for this DataSet.
-     * Internally, this recreates the colors array and adds the specified color.
-     *
-     * @param color
-     */
-    public void setColor(int color) {
-        resetColors();
-        mColors.add(color);
-    }
-
-    /**
      * returns all the colors that are set for this DataSet
      *
      * @return
      */
     public List<Integer> getColors() {
         return mColors;
+    }
+
+    /**
+     * Sets the colors that should be used fore this DataSet. Colors are reused
+     * as soon as the number of Entries the DataSet represents is higher than
+     * the size of the colors array. If you are using colors from the resources,
+     * make sure that the colors are already prepared (by calling
+     * getResources().getColor(...)) before adding them to the DataSet.
+     *
+     * @param colors
+     */
+    public void setColors(int[] colors) {
+        this.mColors = ColorTemplate.createColors(colors);
     }
 
     /**
@@ -767,10 +743,30 @@ public abstract class DataSet<T extends Entry> {
     }
 
     /**
+     * Sets the one and ONLY color that should be used for this DataSet.
+     * Internally, this recreates the colors array and adds the specified color.
+     *
+     * @param color
+     */
+    public void setColor(int color) {
+        resetColors();
+        mColors.add(color);
+    }
+
+    /**
      * Resets all colors of this DataSet and recreates the colors array.
      */
     public void resetColors() {
         mColors = new ArrayList<Integer>();
+    }
+
+    /**
+     * returns true if highlighting of values is enabled, false if not
+     *
+     * @return
+     */
+    public boolean isHighlightEnabled() {
+        return mHighlightEnabled;
     }
 
     /**
@@ -781,15 +777,6 @@ public abstract class DataSet<T extends Entry> {
      */
     public void setHighlightEnabled(boolean enabled) {
         mHighlightEnabled = enabled;
-    }
-
-    /**
-     * returns true if highlighting of values is enabled, false if not
-     *
-     * @return
-     */
-    public boolean isHighlightEnabled() {
-        return mHighlightEnabled;
     }
 
     /**
@@ -810,6 +797,17 @@ public abstract class DataSet<T extends Entry> {
     }
 
     /**
+     * Returns the formatter used for drawing the values inside the chart.
+     *
+     * @return
+     */
+    public ValueFormatter getValueFormatter() {
+        if (mValueFormatter == null)
+            return new DefaultValueFormatter(1);
+        return mValueFormatter;
+    }
+
+    /**
      * Sets the formatter to be used for drawing the values inside the chart. If
      * no formatter is set, the chart will automatically determine a reasonable
      * formatting (concerning decimals) for all the values that are drawn inside
@@ -827,17 +825,6 @@ public abstract class DataSet<T extends Entry> {
     }
 
     /**
-     * Returns the formatter used for drawing the values inside the chart.
-     *
-     * @return
-     */
-    public ValueFormatter getValueFormatter() {
-        if (mValueFormatter == null)
-            return new DefaultValueFormatter(1);
-        return mValueFormatter;
-    }
-
-    /**
      * If this component has no ValueFormatter or is only equipped with the
      * default one (no custom set), return true.
      *
@@ -852,6 +839,10 @@ public abstract class DataSet<T extends Entry> {
         return false;
     }
 
+    public int getValueTextColor() {
+        return mValueColor;
+    }
+
     /**
      * Sets the color the value-labels of this DataSet should have.
      *
@@ -861,8 +852,8 @@ public abstract class DataSet<T extends Entry> {
         mValueColor = color;
     }
 
-    public int getValueTextColor() {
-        return mValueColor;
+    public Typeface getValueTypeface() {
+        return mValueTypeface;
     }
 
     /**
@@ -874,8 +865,13 @@ public abstract class DataSet<T extends Entry> {
         mValueTypeface = tf;
     }
 
-    public Typeface getValueTypeface() {
-        return mValueTypeface;
+    /**
+     * Returns the text-size of the labels that are displayed above the values.
+     *
+     * @return
+     */
+    public float getValueTextSize() {
+        return mValueTextSize;
     }
 
     /**
@@ -885,15 +881,6 @@ public abstract class DataSet<T extends Entry> {
      */
     public void setValueTextSize(float size) {
         mValueTextSize = Utils.convertDpToPixel(size);
-    }
-
-    /**
-     * Returns the text-size of the labels that are displayed above the values.
-     *
-     * @return
-     */
-    public float getValueTextSize() {
-        return mValueTextSize;
     }
 
     /**

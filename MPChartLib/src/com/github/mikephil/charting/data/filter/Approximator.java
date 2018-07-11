@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.data.filter;
 
 import com.github.mikephil.charting.data.Entry;
@@ -9,15 +8,19 @@ import java.util.List;
 /**
  * Implemented according to Wiki-Pseudocode {@link}
  * http://en.wikipedia.org/wiki/Ramer�Douglas�Peucker_algorithm
- * 
+ *
  * @author Philipp Baldauf & Phliipp Jahoda
  */
 public class Approximator {
 
-    /** the type of filtering algorithm to use */
+    /**
+     * the type of filtering algorithm to use
+     */
     private ApproximatorType mType = ApproximatorType.DOUGLAS_PEUCKER;
 
-    /** the tolerance to be filtered with */
+    /**
+     * the tolerance to be filtered with
+     */
     private double mTolerance = 0;
 
     private float mScaleRatio = 1f;
@@ -29,11 +32,6 @@ public class Approximator {
      */
     private boolean[] keep;
 
-    /** enums for the different types of filtering algorithms */
-    public enum ApproximatorType {
-        NONE, DOUGLAS_PEUCKER
-    }
-
     /**
      * Initializes the approximator with type NONE
      */
@@ -44,7 +42,7 @@ public class Approximator {
     /**
      * Initializes the approximator with the given type and tolerance. If
      * toleranec <= 0, no filtering will be done.
-     * 
+     *
      * @param type
      */
     public Approximator(ApproximatorType type, double tolerance) {
@@ -53,7 +51,7 @@ public class Approximator {
 
     /**
      * sets type and tolerance, if tolerance <= 0, no filtering will be done
-     * 
+     *
      * @param type
      * @param tolerance
      */
@@ -73,7 +71,7 @@ public class Approximator {
 
     /**
      * Sets the filtering algorithm that should be used.
-     * 
+     *
      * @param type
      */
     public void setType(ApproximatorType type) {
@@ -83,7 +81,7 @@ public class Approximator {
     /**
      * Sets the ratios for x- and y-axis, as well as the ratio of the scale
      * levels
-     * 
+     *
      * @param deltaRatio
      * @param scaleRatio
      */
@@ -94,7 +92,7 @@ public class Approximator {
 
     /**
      * Filters according to type. Uses the pre set set tolerance
-     * 
+     *
      * @param points the points to filter
      * @return
      */
@@ -104,8 +102,8 @@ public class Approximator {
 
     /**
      * Filters according to type.
-     * 
-     * @param points the points to filter
+     *
+     * @param points    the points to filter
      * @param tolerance the angle in degrees that will trigger the filtering
      * @return
      */
@@ -129,7 +127,7 @@ public class Approximator {
     /**
      * uses the douglas peuker algorithm to reduce the given List of
      * entries
-     * 
+     *
      * @param entries
      * @param epsilon
      * @return
@@ -161,14 +159,14 @@ public class Approximator {
     /**
      * apply the Douglas-Peucker-Reduction to an List of Entry with a given
      * epsilon (tolerance)
-     * 
+     *
      * @param entries
      * @param epsilon as y-value
      * @param start
      * @param end
      */
     private void algorithmDouglasPeucker(List<Entry> entries, double epsilon, int start,
-            int end) {
+                                         int end) {
         if (end <= start + 1) {
             // recursion finished
             return;
@@ -206,11 +204,11 @@ public class Approximator {
     /**
      * calculate the distance between a line between two entries and an entry
      * (point)
-     * 
+     *
      * @param startEntry line startpoint
-     * @param endEntry line endpoint
+     * @param endEntry   line endpoint
      * @param entryPoint the point to which the distance is measured from the
-     *            line
+     *                   line
      * @return
      */
     public double calcPointToLineDistance(Entry startEntry, Entry endEntry, Entry entryPoint) {
@@ -232,7 +230,7 @@ public class Approximator {
     /**
      * Calculates the angle between two given lines. The provided Entry objects
      * mark the starting and end points of the lines.
-     * 
+     *
      * @param start1
      * @param end1
      * @param start2
@@ -250,7 +248,7 @@ public class Approximator {
     /**
      * calculates the angle between two Entries (points) in the chart taking
      * ratios into consideration
-     * 
+     *
      * @param p1
      * @param p2
      * @return
@@ -266,7 +264,7 @@ public class Approximator {
 
     /**
      * calculates the angle between two Entries (points) in the chart
-     * 
+     *
      * @param p1
      * @param p2
      * @return
@@ -278,5 +276,12 @@ public class Approximator {
         double angle = Math.atan2(dy, dx) * 180.0 / Math.PI;
 
         return angle;
+    }
+
+    /**
+     * enums for the different types of filtering algorithms
+     */
+    public enum ApproximatorType {
+        NONE, DOUGLAS_PEUCKER
     }
 }

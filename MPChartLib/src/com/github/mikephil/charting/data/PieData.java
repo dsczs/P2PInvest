@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.data;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.List;
  * legend labels of the PieChart are created from the x-values array, and not
  * from the DataSet labels. Each PieData object can only represent one
  * PieDataSet (multiple PieDataSets inside a single PieChart are not possible).
- * 
+ *
  * @author Philipp Jahoda
  */
 public class PieData extends ChartData<PieDataSet> {
@@ -41,24 +40,24 @@ public class PieData extends ChartData<PieDataSet> {
     }
 
     /**
+     * Returns the DataSet this PieData object represents. A PieData object can
+     * only contain one DataSet.
+     *
+     * @return
+     */
+    public PieDataSet getDataSet() {
+        return mDataSets.get(0);
+    }
+
+    /**
      * Sets the PieDataSet this data object should represent.
-     * 
+     *
      * @param dataSet
      */
     public void setDataSet(PieDataSet dataSet) {
         mDataSets.clear();
         mDataSets.add(dataSet);
         init();
-    }
-
-    /**
-     * Returns the DataSet this PieData object represents. A PieData object can
-     * only contain one DataSet.
-     * 
-     * @return
-     */
-    public PieDataSet getDataSet() {
-        return mDataSets.get(0);
     }
 
     @Override

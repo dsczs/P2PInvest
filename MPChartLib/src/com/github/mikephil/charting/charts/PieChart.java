@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
@@ -29,58 +28,48 @@ import java.util.List;
 public class PieChart extends PieRadarChartBase<PieData> {
 
     /**
+     * the radius of the transparent circle next to the chart-hole in the center
+     */
+    protected float mTransparentCircleRadiusPercent = 55f;
+    /**
      * rect object that represents the bounds of the piechart, needed for
      * drawing the circle
      */
     private RectF mCircleBox = new RectF();
-
     /**
      * flag indicating if the x-labels should be drawn or not
      */
     private boolean mDrawXLabels = true;
-
     /**
      * array that holds the width of each pie-slice in degrees
      */
     private float[] mDrawAngles;
-
     /**
      * array that holds the absolute angle in degrees of each slice
      */
     private float[] mAbsoluteAngles;
-
     /**
      * if true, the white hole inside the chart will be drawn
      */
     private boolean mDrawHole = true;
-
     /**
      * if true, the values inside the piechart are drawn as percent values
      */
     private boolean mUsePercentValues = false;
-
     /**
      * if true, the slices of the piechart are rounded
      */
     private boolean mDrawRoundedSlices = false;
-
     /**
      * variable for the text that is drawn in the center of the pie-chart. If
      * this value is null, the default is "Total Value\n + getYValueSum()"
      */
     private String mCenterText = "";
-
     /**
      * indicates the size of the hole in the center of the piechart, default:
      * radius / 2
      */
     private float mHoleRadiusPercent = 50f;
-
-    /**
-     * the radius of the transparent circle next to the chart-hole in the center
-     */
-    protected float mTransparentCircleRadiusPercent = 55f;
-
     /**
      * if enabled, centertext is drawn
      */
@@ -363,15 +352,6 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-     * set this to true to draw the pie center empty
-     *
-     * @param enabled
-     */
-    public void setDrawHoleEnabled(boolean enabled) {
-        this.mDrawHole = enabled;
-    }
-
-    /**
      * returns true if the hole in the center of the pie-chart is set to be
      * visible, false if not
      *
@@ -382,13 +362,12 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-     * sets the text that is displayed in the center of the pie-chart. By
-     * default, the text is "Total Value + sumofallvalues"
+     * set this to true to draw the pie center empty
      *
-     * @param text
+     * @param enabled
      */
-    public void setCenterText(String text) {
-        mCenterText = text;
+    public void setDrawHoleEnabled(boolean enabled) {
+        this.mDrawHole = enabled;
     }
 
     /**
@@ -398,6 +377,16 @@ public class PieChart extends PieRadarChartBase<PieData> {
      */
     public String getCenterText() {
         return mCenterText;
+    }
+
+    /**
+     * sets the text that is displayed in the center of the pie-chart. By
+     * default, the text is "Total Value + sumofallvalues"
+     *
+     * @param text
+     */
+    public void setCenterText(String text) {
+        mCenterText = text;
     }
 
     /**
@@ -493,6 +482,15 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
+     * Returns the size of the hole radius in percent of the total radius.
+     *
+     * @return
+     */
+    public float getHoleRadius() {
+        return mHoleRadiusPercent;
+    }
+
+    /**
      * sets the radius of the hole in the center of the piechart in percent of
      * the maximum radius (max = the radius of the whole chart), default 50%
      *
@@ -500,15 +498,6 @@ public class PieChart extends PieRadarChartBase<PieData> {
      */
     public void setHoleRadius(final float percent) {
         mHoleRadiusPercent = percent;
-    }
-
-    /**
-     * Returns the size of the hole radius in percent of the total radius.
-     *
-     * @return
-     */
-    public float getHoleRadius() {
-        return mHoleRadiusPercent;
     }
 
     /**
@@ -524,6 +513,10 @@ public class PieChart extends PieRadarChartBase<PieData> {
         p.setAlpha(alpha);
     }
 
+    public float getTransparentCircleRadius() {
+        return mTransparentCircleRadiusPercent;
+    }
+
     /**
      * sets the radius of the transparent circle that is drawn next to the hole
      * in the piechart in percent of the maximum radius (max = the radius of the
@@ -534,10 +527,6 @@ public class PieChart extends PieRadarChartBase<PieData> {
      */
     public void setTransparentCircleRadius(final float percent) {
         mTransparentCircleRadiusPercent = percent;
-    }
-
-    public float getTransparentCircleRadius() {
-        return mTransparentCircleRadiusPercent;
     }
 
     /**
@@ -603,8 +592,8 @@ public class PieChart extends PieRadarChartBase<PieData> {
      * note that word wrapping takes a toll on performance
      * if word wrapping is disabled, newlines are still respected
      */
-    public void setCenterTextWordWrapEnabled(boolean enabled) {
-        mCenterTextWordWrapEnabled = enabled;
+    public boolean isCenterTextWordWrapEnabled() {
+        return mCenterTextWordWrapEnabled;
     }
 
     /**
@@ -612,16 +601,8 @@ public class PieChart extends PieRadarChartBase<PieData> {
      * note that word wrapping takes a toll on performance
      * if word wrapping is disabled, newlines are still respected
      */
-    public boolean isCenterTextWordWrapEnabled() {
-        return mCenterTextWordWrapEnabled;
-    }
-
-    /**
-     * the rectangular radius of the bounding box for the center text, as a percentage of the pie hole
-     * default 1.f (100%)
-     */
-    public void setCenterTextRadiusPercent(float percent) {
-        mCenterTextRadiusPercent = percent;
+    public void setCenterTextWordWrapEnabled(boolean enabled) {
+        mCenterTextWordWrapEnabled = enabled;
     }
 
     /**
@@ -630,5 +611,13 @@ public class PieChart extends PieRadarChartBase<PieData> {
      */
     public float getCenterTextRadiusPercent() {
         return mCenterTextRadiusPercent;
+    }
+
+    /**
+     * the rectangular radius of the bounding box for the center text, as a percentage of the pie hole
+     * default 1.f (100%)
+     */
+    public void setCenterTextRadiusPercent(float percent) {
+        mCenterTextRadiusPercent = percent;
     }
 }

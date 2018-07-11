@@ -9,7 +9,7 @@ import android.graphics.drawable.StateListDrawable;
  */
 public class DrawUtils {
 
-    public static Drawable getDrawable(int rgb,float radius){
+    public static Drawable getDrawable(int rgb, float radius) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setColor(rgb);  //填充颜色
         gradientDrawable.setGradientType(GradientDrawable.RECTANGLE); //shape矩形

@@ -20,39 +20,30 @@ public abstract class ChartTouchListener<T extends Chart<?>> extends GestureDete
     protected static final int POST_ZOOM = 5;
     protected static final int ROTATE = 6;
 
-    /** integer field that holds the current touch-state */
+    /**
+     * integer field that holds the current touch-state
+     */
     protected int mTouchMode = NONE;
 
-    /** the last highlighted object (via touch) */
+    /**
+     * the last highlighted object (via touch)
+     */
     protected Highlight mLastHighlighted;
 
-    /** the gesturedetector used for detecting taps and longpresses, ... */
+    /**
+     * the gesturedetector used for detecting taps and longpresses, ...
+     */
     protected GestureDetector mGestureDetector;
 
-    /** the chart the listener represents */
+    /**
+     * the chart the listener represents
+     */
     protected T mChart;
 
     public ChartTouchListener(T chart) {
         this.mChart = chart;
 
         mGestureDetector = new GestureDetector(chart.getContext(), this);
-    }
-
-    /**
-     * Sets the last value that was highlighted via touch.
-     * @param high
-     */
-    public void setLastHighlighted(Highlight high) {
-        mLastHighlighted = high;
-    }
-
-    /**
-     * returns the touch mode the listener is currently in
-     *
-     * @return
-     */
-    public int getTouchMode() {
-        return mTouchMode;
     }
 
     /**
@@ -68,5 +59,23 @@ public abstract class ChartTouchListener<T extends Chart<?>> extends GestureDete
         float dx = eventX - startX;
         float dy = eventY - startY;
         return (float) Math.sqrt(dx * dx + dy * dy);
+    }
+
+    /**
+     * Sets the last value that was highlighted via touch.
+     *
+     * @param high
+     */
+    public void setLastHighlighted(Highlight high) {
+        mLastHighlighted = high;
+    }
+
+    /**
+     * returns the touch mode the listener is currently in
+     *
+     * @return
+     */
+    public int getTouchMode() {
+        return mTouchMode;
     }
 }

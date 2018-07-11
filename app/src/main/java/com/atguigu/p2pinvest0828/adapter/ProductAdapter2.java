@@ -21,7 +21,7 @@ public class ProductAdapter2 extends MyBaseAdapter2<Product> {
 
     @Override
     protected void setData(View convertView, Product product) {
-        ((TextView)convertView.findViewById(R.id.p_name)).setText(product.name);
+        ((TextView) convertView.findViewById(R.id.p_name)).setText(product.name);
         //....
 
         Log.e("TAG", "setData");
@@ -30,6 +30,6 @@ public class ProductAdapter2 extends MyBaseAdapter2<Product> {
 
     @Override
     protected View initView(Context context) {
-        return View.inflate(context,R.layout.item_product_list,null);
+        return View.inflate(context, R.layout.item_product_list, null);
     }
 }

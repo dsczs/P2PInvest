@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
@@ -12,19 +11,10 @@ import com.github.mikephil.charting.renderer.ScatterChartRenderer;
  * The ScatterChart. Draws dots, triangles, squares and custom shapes into the
  * Chart-View. CIRCLE and SCQUARE offer the best performance, TRIANGLE has the
  * worst performance.
- * 
+ *
  * @author Philipp Jahoda
  */
 public class ScatterChart extends BarLineChartBase<ScatterData> implements ScatterDataProvider {
-
-    /**
-     * enum that defines the shape that is drawn where the values are, CIRCLE
-     * and SCQUARE offer the best performance, TRIANGLE has the worst
-     * performance.
-     */
-    public enum ScatterShape {
-        CROSS, TRIANGLE, CIRCLE, SQUARE
-    }
 
     public ScatterChart(Context context) {
         super(context);
@@ -36,6 +26,17 @@ public class ScatterChart extends BarLineChartBase<ScatterData> implements Scatt
 
     public ScatterChart(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    /**
+     * Returns all possible predefined ScatterShapes.
+     *
+     * @return
+     */
+    public static ScatterShape[] getAllPossibleShapes() {
+        return new ScatterShape[]{
+                ScatterShape.SQUARE, ScatterShape.CIRCLE, ScatterShape.TRIANGLE, ScatterShape.CROSS
+        };
     }
 
     @Override
@@ -57,18 +58,18 @@ public class ScatterChart extends BarLineChartBase<ScatterData> implements Scatt
         mDeltaX = Math.abs(mXChartMax - mXChartMin);
     }
 
-    /**
-     * Returns all possible predefined ScatterShapes.
-     * 
-     * @return
-     */
-    public static ScatterShape[] getAllPossibleShapes() {
-        return new ScatterShape[] {
-                ScatterShape.SQUARE, ScatterShape.CIRCLE, ScatterShape.TRIANGLE, ScatterShape.CROSS
-        };
-    }
-
     public ScatterData getScatterData() {
         return mData;
-    };
+    }
+
+    /**
+     * enum that defines the shape that is drawn where the values are, CIRCLE
+     * and SCQUARE offer the best performance, TRIANGLE has the worst
+     * performance.
+     */
+    public enum ScatterShape {
+        CROSS, TRIANGLE, CIRCLE, SQUARE
+    }
+
+    ;
 }

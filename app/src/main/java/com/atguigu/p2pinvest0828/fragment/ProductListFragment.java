@@ -47,7 +47,7 @@ public class ProductListFragment extends BaseFragment {
 
         JSONObject jsonObject = JSON.parseObject(content);
         boolean success = jsonObject.getBoolean("success");
-        if(success){
+        if (success) {
             String data = jsonObject.getString("data");
             //获取集合数据
             productList = JSON.parseArray(data, Product.class);

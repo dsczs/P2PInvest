@@ -34,7 +34,7 @@ public class InvestFragment extends BaseFragment {
     TabPageIndicator tabpageInvest;
     @Bind(R.id.vp_invest)
     ViewPager vpInvest;
-
+    private List<Fragment> fragmentList = new ArrayList<>();
 
     @Override
     protected RequestParams getParams() {
@@ -49,7 +49,7 @@ public class InvestFragment extends BaseFragment {
     @Override
     protected void initData(String content) {
         //1.加载三个不同的Fragment：ProductListFragment,ProductRecommondFragment,ProductHotFragment.
-       initFragments();
+        initFragments();
         //2.ViewPager设置三个Fragment的显示
         MyAdapter adapter = new MyAdapter(getFragmentManager());
         vpInvest.setAdapter(adapter);
@@ -57,7 +57,6 @@ public class InvestFragment extends BaseFragment {
         tabpageInvest.setViewPager(vpInvest);
     }
 
-    private List<Fragment> fragmentList = new ArrayList<>();
     private void initFragments() {
         ProductListFragment productListFragment = new ProductListFragment();
         ProductRecommondFragment productRecommondFragment = new ProductRecommondFragment();

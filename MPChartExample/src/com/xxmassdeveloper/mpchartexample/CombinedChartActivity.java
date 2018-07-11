@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -35,8 +34,8 @@ import java.util.ArrayList;
 
 public class CombinedChartActivity extends DemoBase {
 
-    private CombinedChart mChart;
     private final int itemcount = 12;
+    private CombinedChart mChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +49,9 @@ public class CombinedChartActivity extends DemoBase {
         mChart.setBackgroundColor(Color.WHITE);
         mChart.setDrawGridBackground(false);
         mChart.setDrawBarShadow(false);
-        
+
         // draw bars behind lines
-        mChart.setDrawOrder(new DrawOrder[] {
+        mChart.setDrawOrder(new DrawOrder[]{
                 DrawOrder.BAR, DrawOrder.BUBBLE, DrawOrder.CANDLE, DrawOrder.LINE, DrawOrder.SCATTER
         });
 
@@ -161,7 +160,7 @@ public class CombinedChartActivity extends DemoBase {
 
         return d;
     }
-    
+
     protected BubbleData generateBubbleData() {
 
         BubbleData bd = new BubbleData();

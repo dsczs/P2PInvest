@@ -19,23 +19,25 @@ import com.atguigu.p2pinvest0828.util.UIUtils;
 public class MyScrollView extends ScrollView {
 
     private View childView;
-
-    public MyScrollView(Context context) {
-        super(context);
-    }
-
-    public MyScrollView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    public MyScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
+    private int lastY;//上一次y轴方向操作的坐标位置
+    private Rect normal = new Rect();//用于记录临界状态的左、上、右、下
+    private boolean isFinishAnimation = true;//是否动画结束
 
 //    @Override
 //    protected void onLayout(boolean changed, int l, int t, int r, int b) {
 //        super.onLayout(changed, l, t, r, b);
 //    }
+    private int lastX, downX, downY;
+
+    public MyScrollView(Context context) {
+        super(context);
+    }
+    public MyScrollView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+    public MyScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
     //获取子视图
     @Override
@@ -45,12 +47,6 @@ public class MyScrollView extends ScrollView {
             childView = getChildAt(0);
         }
     }
-
-    private int lastY;//上一次y轴方向操作的坐标位置
-    private Rect normal = new Rect();//用于记录临界状态的左、上、右、下
-    private boolean isFinishAnimation = true;//是否动画结束
-
-    private int lastX, downX, downY;
 
     //拦截:实现父视图对子视图的拦截
     //是否拦截成功，取决于方法的返回值。返回值true:拦截成功。反之，拦截失败
@@ -69,7 +65,7 @@ public class MyScrollView extends ScrollView {
                 int absX = Math.abs(eventX - downX);
                 int absY = Math.abs(eventY - downY);
 
-                if(absY > absX && absY >= UIUtils.dp2px(10)){
+                if (absY > absX && absY >= UIUtils.dp2px(10)) {
                     isIntercept = true;//执行拦截
                 }
 

@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.animation;
 
 import android.animation.ObjectAnimator;
@@ -8,14 +7,29 @@ import android.annotation.SuppressLint;
 /**
  * Object responsible for all animations in the Chart. ANIMATIONS ONLY WORK FOR
  * API LEVEL 11 (Android 3.0.x) AND HIGHER.
- * 
+ *
  * @author Philipp Jahoda
  */
 @SuppressLint("NewApi")
 public class ChartAnimator {
 
-    /** object that is updated upon animation update */
+    /**
+     * the phase that is animated and influences the drawn values on the y-axis
+     */
+    protected float mPhaseY = 1f;
+    /**
+     * the phase that is animated and influences the drawn values on the x-axis
+     */
+    protected float mPhaseX = 1f;
+    /**
+     * object that is updated upon animation update
+     */
     private AnimatorUpdateListener mListener;
+
+    /**
+     * ################ ################ ################ ################
+     */
+    /** CODE BELOW THIS RELATED TO ANIMATION */
 
     public ChartAnimator() {
 
@@ -24,17 +38,6 @@ public class ChartAnimator {
     public ChartAnimator(AnimatorUpdateListener listener) {
         mListener = listener;
     }
-
-    /**
-     * ################ ################ ################ ################
-     */
-    /** CODE BELOW THIS RELATED TO ANIMATION */
-
-    /** the phase that is animated and influences the drawn values on the y-axis */
-    protected float mPhaseY = 1f;
-
-    /** the phase that is animated and influences the drawn values on the x-axis */
-    protected float mPhaseX = 1f;
 
     /**
      * ################ ################ ################ ################
@@ -52,7 +55,7 @@ public class ChartAnimator {
      * @param easingY
      */
     public void animateXY(int durationMillisX, int durationMillisY, EasingFunction easingX,
-            EasingFunction easingY) {
+                          EasingFunction easingY) {
 
         if (android.os.Build.VERSION.SDK_INT < 11)
             return;
@@ -134,7 +137,7 @@ public class ChartAnimator {
      * @param easingY
      */
     public void animateXY(int durationMillisX, int durationMillisY, Easing.EasingOption easingX,
-            Easing.EasingOption easingY) {
+                          Easing.EasingOption easingY) {
 
         if (android.os.Build.VERSION.SDK_INT < 11)
             return;

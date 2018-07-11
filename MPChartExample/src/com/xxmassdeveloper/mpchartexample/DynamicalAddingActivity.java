@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -13,15 +12,16 @@ import com.github.mikephil.charting.components.YAxis.AxisDependency;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
 
 public class DynamicalAddingActivity extends DemoBase implements OnChartValueSelectedListener {
 
+    int[] mColors = ColorTemplate.VORDIPLOM_COLORS;
     private LineChart mChart;
 
     @Override
@@ -35,7 +35,7 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
         mChart.setOnChartValueSelectedListener(this);
         mChart.setDrawGridBackground(false);
         mChart.setDescription("");
-        
+
         // add an empty data object
         mChart.setData(new LineData());
 //        mChart.getXAxis().setDrawLabels(false);
@@ -44,13 +44,11 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
         mChart.invalidate();
     }
 
-    int[] mColors = ColorTemplate.VORDIPLOM_COLORS;
-
     private void addEntry() {
 
         LineData data = mChart.getData();
-        
-        if(data != null) {
+
+        if (data != null) {
 
             LineDataSet set = data.getDataSetByIndex(0);
             // set.addEntry(...); // can be called as well
@@ -62,29 +60,29 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
 
             // add a new x-value first
             data.addXValue(set.getEntryCount() + "");
-            
+
             // choose a random dataSet
             int randomDataSetIndex = (int) (Math.random() * data.getDataSetCount());
-            
+
             data.addEntry(new Entry((float) (Math.random() * 10) + 50f, set.getEntryCount()), randomDataSetIndex);
 
             // let the chart know it's data has changed
             mChart.notifyDataSetChanged();
-            
+
             mChart.setVisibleXRangeMaximum(6);
             mChart.setVisibleYRangeMaximum(15, AxisDependency.LEFT);
 //            
 //            // this automatically refreshes the chart (calls invalidate())
-            mChart.moveViewTo(data.getXValCount()-7, 50f, AxisDependency.LEFT);
+            mChart.moveViewTo(data.getXValCount() - 7, 50f, AxisDependency.LEFT);
         }
     }
 
     private void removeLastEntry() {
 
         LineData data = mChart.getData();
-        
-        if(data != null) {
-         
+
+        if (data != null) {
+
             LineDataSet set = data.getDataSetByIndex(0);
 
             if (set != null) {
@@ -104,18 +102,18 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
     private void addDataSet() {
 
         LineData data = mChart.getData();
-        
-        if(data != null) {
+
+        if (data != null) {
 
             int count = (data.getDataSetCount() + 1);
 
             // create 10 y-vals
             ArrayList<Entry> yVals = new ArrayList<Entry>();
-            
-            if(data.getXValCount() == 0) {
+
+            if (data.getXValCount() == 0) {
                 // add 10 x-entries
                 for (int i = 0; i < 10; i++) {
-                    data.addXValue("" + (i+1));
+                    data.addXValue("" + (i + 1));
                 }
             }
 
@@ -137,20 +135,20 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
 
             data.addDataSet(set);
             mChart.notifyDataSetChanged();
-            mChart.invalidate();   
+            mChart.invalidate();
         }
     }
 
     private void removeDataSet() {
 
         LineData data = mChart.getData();
-        
-        if(data != null) {
+
+        if (data != null) {
 
             data.removeDataSet(data.getDataSetByIndex(data.getDataSetCount() - 1));
 
             mChart.notifyDataSetChanged();
-            mChart.invalidate();   
+            mChart.invalidate();
         }
     }
 

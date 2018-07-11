@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
@@ -15,7 +14,7 @@ public class XAxisRendererBarChart extends XAxisRenderer {
     protected BarChart mChart;
 
     public XAxisRendererBarChart(ViewPortHandler viewPortHandler, XAxis xAxis, Transformer trans,
-            BarChart chart) {
+                                 BarChart chart) {
         super(viewPortHandler, xAxis, trans);
 
         this.mChart = chart;
@@ -23,14 +22,14 @@ public class XAxisRendererBarChart extends XAxisRenderer {
 
     /**
      * draws the x-labels on the specified y-position
-     * 
+     *
      * @param pos
      */
     @Override
     protected void drawLabels(Canvas c, float pos) {
 
         // pre allocate to save performance (dont allocate in loop)
-        float[] position = new float[] {
+        float[] position = new float[]{
                 0f, 0f
         };
 
@@ -83,7 +82,7 @@ public class XAxisRendererBarChart extends XAxisRenderer {
         if (!mXAxis.isDrawGridLinesEnabled() || !mXAxis.isEnabled())
             return;
 
-        float[] position = new float[] {
+        float[] position = new float[]{
                 0f, 0f
         };
 

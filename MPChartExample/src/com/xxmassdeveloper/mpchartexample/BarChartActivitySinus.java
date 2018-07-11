@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -36,9 +35,9 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
     protected BarChart mChart;
     private SeekBar mSeekBarX;
     private TextView tvX;
-    
+
     private Typeface mTf;
-    
+
     private List<BarEntry> mSinusData;
 
     @Override
@@ -47,8 +46,8 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_barchart_sinus);
-        
-        mSinusData = FileUtils.loadBarEntriesFromAssets(getAssets(),"othersine.txt");
+
+        mSinusData = FileUtils.loadBarEntriesFromAssets(getAssets(), "othersine.txt");
 
         tvX = (TextView) findViewById(R.id.tvValueCount);
 
@@ -228,14 +227,14 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
     private void setData(int count) {
 
         ArrayList<String> xVals = new ArrayList<String>();
-        
+
         ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-        
+
         for (int i = 0; i < count; i++) {
-            xVals.add(i+"");
+            xVals.add(i + "");
             entries.add(mSinusData.get(i));
         }
-        
+
         BarDataSet set = new BarDataSet(entries, "Sinus Function");
         set.setBarSpacePercent(40f);
         set.setColor(Color.rgb(240, 120, 124));

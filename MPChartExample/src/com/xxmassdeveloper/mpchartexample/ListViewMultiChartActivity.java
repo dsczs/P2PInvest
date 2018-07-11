@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Context;
@@ -31,7 +30,7 @@ import java.util.List;
 /**
  * Demonstrates the use of charts inside a ListView. IMPORTANT: provide a
  * specific height attribute for the chart inside your listview-item
- * 
+ *
  * @author Philipp Jahoda
  */
 public class ListViewMultiChartActivity extends DemoBase {
@@ -42,19 +41,19 @@ public class ListViewMultiChartActivity extends DemoBase {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_listview_chart);
-        
+
         ListView lv = (ListView) findViewById(R.id.listView1);
 
         ArrayList<ChartItem> list = new ArrayList<ChartItem>();
 
         // 30 items
         for (int i = 0; i < 30; i++) {
-            
-            if(i % 3 == 0) {
+
+            if (i % 3 == 0) {
                 list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));
-            } else if(i % 3 == 1) {
+            } else if (i % 3 == 1) {
                 list.add(new BarChartItem(generateDataBar(i + 1), getApplicationContext()));
-            } else if(i % 3 == 2) {
+            } else if (i % 3 == 2) {
                 list.add(new PieChartItem(generateDataPie(i + 1), getApplicationContext()));
             }
         }
@@ -63,33 +62,9 @@ public class ListViewMultiChartActivity extends DemoBase {
         lv.setAdapter(cda);
     }
 
-    /** adapter that supports 3 different item types */
-    private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
-        
-        public ChartDataAdapter(Context context, List<ChartItem> objects) {
-            super(context, 0, objects);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return getItem(position).getView(position, convertView, getContext());
-        }
-        
-        @Override
-        public int getItemViewType(int position) {           
-            // return the views type
-            return getItem(position).getItemType();
-        }
-        
-        @Override
-        public int getViewTypeCount() {
-            return 3; // we have 3 different item-types
-        }
-    }
-    
     /**
      * generates a random ChartData object with just one DataSet
-     * 
+     *
      * @return
      */
     private LineData generateDataLine(int cnt) {
@@ -105,7 +80,7 @@ public class ListViewMultiChartActivity extends DemoBase {
         d1.setCircleSize(4.5f);
         d1.setHighLightColor(Color.rgb(244, 117, 117));
         d1.setDrawValues(false);
-        
+
         ArrayList<Entry> e2 = new ArrayList<Entry>();
 
         for (int i = 0; i < 12; i++) {
@@ -119,18 +94,18 @@ public class ListViewMultiChartActivity extends DemoBase {
         d2.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
         d2.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
         d2.setDrawValues(false);
-        
+
         ArrayList<LineDataSet> sets = new ArrayList<LineDataSet>();
         sets.add(d1);
         sets.add(d2);
-        
+
         LineData cd = new LineData(getMonths(), sets);
         return cd;
     }
-    
+
     /**
      * generates a random ChartData object with just one DataSet
-     * 
+     *
      * @return
      */
     private BarData generateDataBar(int cnt) {
@@ -145,14 +120,14 @@ public class ListViewMultiChartActivity extends DemoBase {
         d.setBarSpacePercent(20f);
         d.setColors(ColorTemplate.VORDIPLOM_COLORS);
         d.setHighLightAlpha(255);
-        
+
         BarData cd = new BarData(getMonths(), d);
         return cd;
     }
-    
+
     /**
      * generates a random ChartData object with just one DataSet
-     * 
+     *
      * @return
      */
     private PieData generateDataPie(int cnt) {
@@ -164,23 +139,23 @@ public class ListViewMultiChartActivity extends DemoBase {
         }
 
         PieDataSet d = new PieDataSet(entries, "");
-        
+
         // space between slices
         d.setSliceSpace(2f);
         d.setColors(ColorTemplate.VORDIPLOM_COLORS);
-        
+
         PieData cd = new PieData(getQuarters(), d);
         return cd;
     }
-    
+
     private ArrayList<String> getQuarters() {
-        
+
         ArrayList<String> q = new ArrayList<String>();
         q.add("1st Quarter");
         q.add("2nd Quarter");
         q.add("3rd Quarter");
         q.add("4th Quarter");
-        
+
         return q;
     }
 
@@ -201,5 +176,31 @@ public class ListViewMultiChartActivity extends DemoBase {
         m.add("Dec");
 
         return m;
+    }
+
+    /**
+     * adapter that supports 3 different item types
+     */
+    private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
+
+        public ChartDataAdapter(Context context, List<ChartItem> objects) {
+            super(context, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return getItem(position).getView(position, convertView, getContext());
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            // return the views type
+            return getItem(position).getItemType();
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return 3; // we have 3 different item-types
+        }
     }
 }

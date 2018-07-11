@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
@@ -10,8 +9,8 @@ import com.github.mikephil.charting.data.BubbleData;
 import com.github.mikephil.charting.data.BubbleDataSet;
 import com.github.mikephil.charting.data.BubbleEntry;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.interfaces.BubbleDataProvider;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.BubbleDataProvider;
 import com.github.mikephil.charting.utils.Transformer;
 import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
@@ -25,9 +24,12 @@ import java.util.List;
 public class BubbleChartRenderer extends DataRenderer {
 
     protected BubbleDataProvider mChart;
+    private float[] sizeBuffer = new float[4];
+    private float[] pointBuffer = new float[2];
+    private float[] _hsvBuffer = new float[3];
 
     public BubbleChartRenderer(BubbleDataProvider chart, ChartAnimator animator,
-            ViewPortHandler viewPortHandler) {
+                               ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
         mChart = chart;
 
@@ -53,9 +55,6 @@ public class BubbleChartRenderer extends DataRenderer {
                 drawDataSet(c, set);
         }
     }
-
-    private float[] sizeBuffer = new float[4];
-    private float[] pointBuffer = new float[2];
 
     protected float getShapeSize(float entrySize, float maxSize, float reference) {
         final float factor = (maxSize == 0f) ? 1f : (float) Math.sqrt(entrySize / maxSize);
@@ -187,8 +186,6 @@ public class BubbleChartRenderer extends DataRenderer {
     public void drawExtras(Canvas c) {
     }
 
-    private float[] _hsvBuffer = new float[3];
-
     @Override
     public void drawHighlighted(Canvas c, Highlight[] indices) {
 
@@ -215,12 +212,12 @@ public class BubbleChartRenderer extends DataRenderer {
                 continue;
 
             Transformer trans = mChart.getTransformer(dataSet.getAxisDependency());
-            
+
             sizeBuffer[0] = 0f;
             sizeBuffer[2] = 1f;
 
             trans.pointValuesToPixel(sizeBuffer);
-            
+
             // calcualte the full width of 1 step on the x-axis
             final float maxBubbleWidth = Math.abs(sizeBuffer[2] - sizeBuffer[0]);
             final float maxBubbleHeight = Math.abs(mViewPortHandler.contentBottom() - mViewPortHandler.contentTop());

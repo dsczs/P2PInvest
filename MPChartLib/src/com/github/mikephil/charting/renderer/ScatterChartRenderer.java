@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
@@ -11,8 +10,8 @@ import com.github.mikephil.charting.charts.ScatterChart.ScatterShape;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
-import com.github.mikephil.charting.interfaces.ScatterDataProvider;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.ScatterDataProvider;
 import com.github.mikephil.charting.utils.Transformer;
 import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
@@ -26,7 +25,7 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
     protected ScatterBuffer[] mScatterBuffers;
 
     public ScatterChartRenderer(ScatterDataProvider chart, ChartAnimator animator,
-            ViewPortHandler viewPortHandler) {
+                                ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
         mChart = chart;
 
@@ -258,7 +257,7 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
                 continue;
 
             int xIndex = indices[i].getXIndex(); // get the
-                                                 // x-position
+            // x-position
 
 
             if (xIndex > mChart.getXChartMax() * mAnimator.getPhaseX())
@@ -270,7 +269,7 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
 
             float y = yVal * mAnimator.getPhaseY();
 
-            float[] pts = new float[] {
+            float[] pts = new float[]{
                     xIndex, y
             };
 

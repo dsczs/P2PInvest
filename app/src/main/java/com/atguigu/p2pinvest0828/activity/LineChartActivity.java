@@ -32,6 +32,7 @@ public class LineChartActivity extends BaseActivity {
     LineChart lineChart;
 
     private Typeface mTf;//声明字体库
+
     @Override
     protected void initData() {
         mTf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
@@ -80,7 +81,7 @@ public class LineChartActivity extends BaseActivity {
     }
 
     @OnClick(R.id.iv_title_back)
-    public void back(View view){
+    public void back(View view) {
         removeCurrentActivity();
     }
 

@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -26,10 +25,9 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.filter.Approximator;
 import com.github.mikephil.charting.data.filter.Approximator.ApproximatorType;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.xxmassdeveloper.mpchartexample.custom.MyFillFormatter;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
@@ -61,7 +59,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
         mChart = (LineChart) findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
-        
+
         // no description text
         mChart.setDescription("");
         mChart.setNoDataTextDescription("You need to provide data for the chart.");
@@ -71,7 +69,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
         // enable touch gestures
         mChart.setTouchEnabled(true);
-        
+
         mChart.setDragDecelerationFrictionCoef(0.9f);
 
         // enable scaling and dragging
@@ -118,7 +116,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
         leftAxis.setTextColor(ColorTemplate.getHoloBlue());
         leftAxis.setAxisMaxValue(200f);
         leftAxis.setDrawGridLines(true);
-        
+
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setTypeface(tf);
         rightAxis.setTextColor(Color.RED);
@@ -277,8 +275,8 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
         for (int i = 0; i < count; i++) {
             float mult = range / 2f;
             float val = (float) (Math.random() * mult) + 50;// + (float)
-                                                           // ((mult *
-                                                           // 0.1) / 10);
+            // ((mult *
+            // 0.1) / 10);
             yVals1.add(new Entry(val, i));
         }
 
@@ -303,8 +301,8 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
         for (int i = 0; i < count; i++) {
             float mult = range;
             float val = (float) (Math.random() * mult) + 450;// + (float)
-                                                           // ((mult *
-                                                           // 0.1) / 10);
+            // ((mult *
+            // 0.1) / 10);
             yVals2.add(new Entry(val, i));
         }
 

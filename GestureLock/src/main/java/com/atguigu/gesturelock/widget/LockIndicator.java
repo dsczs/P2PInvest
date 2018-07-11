@@ -92,6 +92,7 @@ public class LockIndicator extends View {
 
     /**
      * 请求重新绘制
+     *
      * @param paramString 手势密码字符序列
      */
     public void setPath(String paramString) {

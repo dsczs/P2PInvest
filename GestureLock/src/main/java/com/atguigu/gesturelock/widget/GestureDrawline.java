@@ -90,7 +90,7 @@ public class GestureDrawline extends View {
     }
 
     private void initAutoCheckPointMap() {
-        autoCheckPointMap = new HashMap<String,GesturePoint>();
+        autoCheckPointMap = new HashMap<String, GesturePoint>();
         autoCheckPointMap.put("1,3", getGesturePointByNum(2));
         autoCheckPointMap.put("1,7", getGesturePointByNum(4));
         autoCheckPointMap.put("1,9", getGesturePointByNum(5));
@@ -212,6 +212,7 @@ public class GestureDrawline extends View {
 
     /**
      * 指定时间去清除绘制的状态
+     *
      * @param delayTime 延迟执行时间
      */
     public void clearDrawlineState(long delayTime) {
@@ -221,25 +222,6 @@ public class GestureDrawline extends View {
             drawErrorPathTip();
         }
         new Handler().postDelayed(new clearStateRunnable(), delayTime);
-    }
-
-    /**
-     * 清除绘制状态的线程
-     */
-    final class clearStateRunnable implements Runnable {
-        public void run() {
-            // 重置passWordSb
-            passWordSb = new StringBuilder();
-            // 清空保存点的集合
-            lineList.clear();
-            // 重新绘制界面
-            clearScreenAndDrawList();
-            for (GesturePoint p : list) {
-                p.setPointState(Constants.POINT_STATE_NORMAL);
-            }
-            invalidate();
-            isDrawEnable = true;
-        }
     }
 
     /**
@@ -312,7 +294,6 @@ public class GestureDrawline extends View {
         invalidate();
     }
 
-
     public interface GestureCallBack {
 
         /**
@@ -329,5 +310,24 @@ public class GestureDrawline extends View {
          * 代表用户绘制的密码与传入的密码不相同
          */
         public abstract void checkedFail();
+    }
+
+    /**
+     * 清除绘制状态的线程
+     */
+    final class clearStateRunnable implements Runnable {
+        public void run() {
+            // 重置passWordSb
+            passWordSb = new StringBuilder();
+            // 清空保存点的集合
+            lineList.clear();
+            // 重新绘制界面
+            clearScreenAndDrawList();
+            for (GesturePoint p : list) {
+                p.setPointState(Constants.POINT_STATE_NORMAL);
+            }
+            invalidate();
+            isDrawEnable = true;
+        }
     }
 }

@@ -88,16 +88,17 @@ public class MeFragment extends BaseFragment {
         //查看本地是否有用户的登录信息
         SharedPreferences sp = this.getActivity().getSharedPreferences("user_info", Context.MODE_PRIVATE);
         String name = sp.getString("name", "");
-        if(TextUtils.isEmpty(name)){
+        if (TextUtils.isEmpty(name)) {
             //本地没有保存过用户信息，给出提示：登录
             doLogin();
 
-        }else{
+        } else {
             //已经登录过，则直接加载用户的信息并显示
             doUser();
         }
 
     }
+
     //加载用户信息并显示
     private void doUser() {
 
@@ -108,7 +109,7 @@ public class MeFragment extends BaseFragment {
 
         //判断本地是否已经保存头像的图片，如果有，则不再执行联网操作
         boolean isExist = readImage();
-        if(isExist){
+        if (isExist) {
             return;
         }
 
@@ -117,7 +118,7 @@ public class MeFragment extends BaseFragment {
             @Override
             public Bitmap transform(Bitmap source) {//下载以后的内存中的bitmap对象
                 //压缩处理
-                Bitmap bitmap = BitmapUtils.zoom(source, UIUtils.dp2px(62),UIUtils.dp2px(62));
+                Bitmap bitmap = BitmapUtils.zoom(source, UIUtils.dp2px(62), UIUtils.dp2px(62));
                 //圆形处理
                 bitmap = BitmapUtils.circleBitmap(bitmap);
                 //回收bitmap资源
@@ -135,8 +136,8 @@ public class MeFragment extends BaseFragment {
         //判断一下，是否开启了手势密码。如果开启：先输入手势密码
         SharedPreferences sp = this.getActivity().getSharedPreferences("secret_protect", Context.MODE_PRIVATE);
         boolean isOpen = sp.getBoolean("isOpen", false);
-        if(isOpen){
-            ((BaseActivity)this.getActivity()).goToActivity(GestureVerifyActivity.class,null);
+        if (isOpen) {
+            ((BaseActivity) this.getActivity()).goToActivity(GestureVerifyActivity.class, null);
             return;
         }
     }
@@ -144,17 +145,17 @@ public class MeFragment extends BaseFragment {
     //给出提示：登录
     private void doLogin() {
         new AlertDialog.Builder(this.getActivity())
-                    .setTitle("提示")
-                    .setMessage("您还没有登录哦！么么~")
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                .setTitle("提示")
+                .setMessage("您还没有登录哦！么么~")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 //                            UIUtils.toast("进入登录页面",false);
-                            ((BaseActivity) MeFragment.this.getActivity()).goToActivity(LoginActivity.class, null);
-                        }
-                    })
-                    .setCancelable(false)
-                    .show();
+                        ((BaseActivity) MeFragment.this.getActivity()).goToActivity(LoginActivity.class, null);
+                    }
+                })
+                .setCancelable(false)
+                .show();
     }
 
     public void initTitle() {
@@ -164,9 +165,9 @@ public class MeFragment extends BaseFragment {
     }
 
     @OnClick(R.id.iv_title_setting)
-    public void setting(View view){
+    public void setting(View view) {
         //启动用户信息界面的Activity
-        ((BaseActivity)this.getActivity()).goToActivity(UserInfoActivity.class, null);
+        ((BaseActivity) this.getActivity()).goToActivity(UserInfoActivity.class, null);
     }
 
     @Override
@@ -185,17 +186,17 @@ public class MeFragment extends BaseFragment {
 
     private boolean readImage() {
         File filesDir;
-        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){//判断sd卡是否挂载
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {//判断sd卡是否挂载
             //路径1：storage/sdcard/Android/data/包名/files
             filesDir = this.getActivity().getExternalFilesDir("");
 
-        }else{//手机内部存储
+        } else {//手机内部存储
             //路径：data/data/包名/files
             filesDir = this.getActivity().getFilesDir();
 
         }
-        File file = new File(filesDir,"icon.png");
-        if(file.exists()){
+        File file = new File(filesDir, "icon.png");
+        if (file.exists()) {
             //存储--->内存
             Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
             ivMeIcon.setImageBitmap(bitmap);
@@ -207,28 +208,31 @@ public class MeFragment extends BaseFragment {
 
     //设置“充值”操作
     @OnClick(R.id.recharge)
-    public void reCharge(View view){
-        ((BaseActivity)this.getActivity()).goToActivity(ChongZhiActivity.class,null);
+    public void reCharge(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(ChongZhiActivity.class, null);
     }
+
     //设置“提现”操作
     @OnClick(R.id.withdraw)
-    public void withdraw(View view){
-        ((BaseActivity)this.getActivity()).goToActivity(TiXianActivity.class,null);
+    public void withdraw(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(TiXianActivity.class, null);
     }
 
     //启动折线图
     @OnClick(R.id.ll_touzi)
-    public void startLineChart(View view){
-        ((BaseActivity)this.getActivity()).goToActivity(LineChartActivity.class,null);
+    public void startLineChart(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(LineChartActivity.class, null);
     }
+
     //启动折线图
     @OnClick(R.id.ll_touzi_zhiguan)
-    public void startBarChart(View view){
-        ((BaseActivity)this.getActivity()).goToActivity(BarChartActivity.class,null);
+    public void startBarChart(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(BarChartActivity.class, null);
     }
+
     //启动折线图
     @OnClick(R.id.ll_zichan)
-    public void startPieChart(View view){
-        ((BaseActivity)this.getActivity()).goToActivity(PieChartActivity.class,null);
+    public void startPieChart(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(PieChartActivity.class, null);
     }
 }

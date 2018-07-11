@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.data;
 
 import android.graphics.Color;
@@ -22,22 +21,23 @@ public class BubbleDataSet extends BarLineScatterCandleBubbleDataSet<BubbleEntry
         super(yVals, label);
     }
 
+    public float getHighlightCircleWidth() {
+        return mHighlightCircleWidth;
+    }
+
     /**
      * Sets the width of the circle that surrounds the bubble when highlighted,
      * in dp.
-     * 
+     *
      * @param width
      */
     public void setHighlightCircleWidth(float width) {
         mHighlightCircleWidth = Utils.convertDpToPixel(width);
     }
 
-    public float getHighlightCircleWidth() {
-        return mHighlightCircleWidth;
-    }
-
     /**
      * Sets a color with a specific alpha value.
+     *
      * @param color
      * @param alpha from 0-255
      */
@@ -70,37 +70,32 @@ public class BubbleDataSet extends BarLineScatterCandleBubbleDataSet<BubbleEntry
         for (int i = start; i <= endValue; i++) {
 
             final BubbleEntry entry = entries.get(i);
-            
+
             final float ymin = yMin(entry);
             final float ymax = yMax(entry);
 
-            if (ymin < mYMin)
-            {
+            if (ymin < mYMin) {
                 mYMin = ymin;
             }
 
-            if (ymax > mYMax)
-            {
+            if (ymax > mYMax) {
                 mYMax = ymax;
             }
 
             final float xmin = xMin(entry);
             final float xmax = xMax(entry);
 
-            if (xmin < mXMin)
-            {
+            if (xmin < mXMin) {
                 mXMin = xmin;
             }
 
-            if (xmax > mXMax)
-            {
+            if (xmax > mXMax) {
                 mXMax = xmax;
             }
 
             final float size = largestSize(entry);
 
-            if (size > mMaxSize)
-            {
+            if (size > mMaxSize) {
                 mMaxSize = size;
             }
         }

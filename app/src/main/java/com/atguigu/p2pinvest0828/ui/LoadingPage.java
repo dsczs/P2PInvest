@@ -34,6 +34,8 @@ public abstract class LoadingPage extends FrameLayout {
     private LayoutParams params;
 
     private Context mContext;
+    private ResultState resultState;
+
     public LoadingPage(Context context) {
         this(context, null);
     }
@@ -99,7 +101,7 @@ public abstract class LoadingPage extends FrameLayout {
 
         if (view_success == null) {
 //            view_success = UIUtils.getView(layoutId());//加载布局使用的是Application
-            view_success = View.inflate(mContext,layoutId(),null);//加载布局使用的是activity
+            view_success = View.inflate(mContext, layoutId(), null);//加载布局使用的是activity
             addView(view_success, params);
         }
 
@@ -107,8 +109,6 @@ public abstract class LoadingPage extends FrameLayout {
     }
 
     public abstract int layoutId();
-
-    private ResultState resultState;
 
     //在show()中实现联网加载数据
     public void show() {
@@ -193,12 +193,11 @@ public abstract class LoadingPage extends FrameLayout {
         ERROR(2), EMPTY(3), SUCCESS(4);
 
         int state;
+        private String content;
 
         ResultState(int state) {
             this.state = state;
         }
-
-        private String content;
 
         public String getContent() {
             return content;

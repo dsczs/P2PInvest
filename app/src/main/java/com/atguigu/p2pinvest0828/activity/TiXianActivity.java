@@ -60,12 +60,12 @@ public class TiXianActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String money = etInputMoney.getText().toString().trim();
-                if(TextUtils.isEmpty(money)){
+                if (TextUtils.isEmpty(money)) {
                     //设置button不可操作的
                     btnTixian.setClickable(false);
                     //修改背景颜色
                     btnTixian.setBackgroundResource(R.drawable.btn_02);
-                }else{
+                } else {
                     //设置button可操作的
                     btnTixian.setClickable(true);
                     //修改背景颜色
@@ -83,7 +83,7 @@ public class TiXianActivity extends BaseActivity {
     }
 
     @OnClick(R.id.iv_title_back)
-    public void back(View view){
+    public void back(View view) {
         removeCurrentActivity();
     }
 
@@ -93,17 +93,17 @@ public class TiXianActivity extends BaseActivity {
     }
 
     @OnClick(R.id.btn_tixian)
-    public void tiXian(View view){
+    public void tiXian(View view) {
         //将要提现的数据数额发送给后台，由后台连接第三方支付平台，完成金额的提现操作。（略）
         //提示用户信息：
-        UIUtils.toast("您的提现申请已被成功受理。审核通过后，24小时内，你的钱自然会到账",false);
+        UIUtils.toast("您的提现申请已被成功受理。审核通过后，24小时内，你的钱自然会到账", false);
 
         UIUtils.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 removeCurrentActivity();
             }
-        },2000);
+        }, 2000);
     }
 
 }

@@ -64,6 +64,7 @@ public class MoreFragment extends BaseFragment {
     TextView tvMorePhone;
 
     private SharedPreferences sp;
+    private String department = "不明确";
 
     @Override
     protected RequestParams getParams() {
@@ -151,8 +152,6 @@ public class MoreFragment extends BaseFragment {
         oks.show(this.getActivity());
     }
 
-    private String department = "不明确";
-
     private void commitFanKui() {
         tvMoreFankui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,8 +225,8 @@ public class MoreFragment extends BaseFragment {
                                 MoreFragment.this.getActivity().startActivity(intent);
                             }
                         })
-                            .setNegativeButton("取消", null)
-                            .show();
+                        .setNegativeButton("取消", null)
+                        .show();
             }
         });
     }

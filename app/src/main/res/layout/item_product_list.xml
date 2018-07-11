@@ -9,7 +9,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/divider_line"/>
+        android:background="@color/divider_line" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,13 +30,13 @@
                 android:layout_weight="1"
                 android:text="超级新手计划"
                 android:textColor="#333333"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/right"/>
+                android:src="@drawable/right" />
         </LinearLayout>
 
         <View
@@ -44,7 +44,7 @@
             android:layout_height="1dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="@color/divider_line"/>
+            android:background="@color/divider_line" />
     </LinearLayout>
 
 
@@ -74,7 +74,7 @@
                     android:gravity="left"
                     android:text="产品金额"
                     android:textColor="@color/product_detail_common"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -83,7 +83,7 @@
                     android:gravity="center"
                     android:text="预期年利率"
                     android:textColor="@color/product_detail_common"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -92,7 +92,7 @@
                     android:gravity="right"
                     android:text="锁定期"
                     android:textColor="@color/product_detail_common"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -115,14 +115,14 @@
                         android:text="10"
                         android:textColor="@color/product_red_common"
                         android:textSize="14sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="万"
                         android:textColor="@color/product_detail_common"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -138,14 +138,14 @@
                         android:text="8.00"
                         android:textColor="@color/product_red_common"
                         android:textSize="14sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="%"
                         android:textColor="@color/product_detail_common"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -161,14 +161,14 @@
                         android:text="30"
                         android:textColor="@color/product_red_common"
                         android:textSize="14sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="天"
                         android:textColor="@color/product_detail_common"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -187,7 +187,7 @@
                     <TextView
                         android:layout_width="1dp"
                         android:layout_height="12dp"
-                        android:background="@color/divider_line"/>
+                        android:background="@color/divider_line" />
 
                     <TextView
                         android:id="@+id/p_minzouzi"
@@ -198,7 +198,7 @@
                         android:drawablePadding="4dp"
                         android:text="100起"
                         android:textColor="@color/product_detail_common"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -210,7 +210,7 @@
                     <TextView
                         android:layout_width="1dp"
                         android:layout_height="12dp"
-                        android:background="@color/divider_line"/>
+                        android:background="@color/divider_line" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -220,7 +220,7 @@
                         android:drawablePadding="4dp"
                         android:text="本息保障"
                         android:textColor="@color/product_detail_common"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -232,7 +232,7 @@
                     <TextView
                         android:layout_width="1dp"
                         android:layout_height="12dp"
-                        android:background="@color/divider_line"/>
+                        android:background="@color/divider_line" />
 
                     <TextView
                         android:id="@+id/p_minnum"
@@ -243,7 +243,7 @@
                         android:drawablePadding="4dp"
                         android:text="100"
                         android:textColor="@color/product_detail_common"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -257,14 +257,13 @@
             app:roundProgressColor="#18B4ED"
             app:roundWith="5dp"
             app:textColor="#18b4ed"
-            app:textSize="12sp">
-        </com.atguigu.p2pinvest0828.ui.RoundProgress>
+            app:textSize="12sp"></com.atguigu.p2pinvest0828.ui.RoundProgress>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/divider_line"/>
+        android:background="@color/divider_line" />
 </LinearLayout>
 
 

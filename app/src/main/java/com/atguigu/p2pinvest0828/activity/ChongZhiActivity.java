@@ -90,7 +90,9 @@ public class ChongZhiActivity extends BaseActivity {
                 default:
                     break;
             }
-        };
+        }
+
+        ;
     };
 
     @Override
@@ -115,12 +117,12 @@ public class ChongZhiActivity extends BaseActivity {
                 Log.e("TAG", "ChongZhiActivity afterTextChanged()");
 
                 String money = etChongzhi.getText().toString().trim();
-                if(TextUtils.isEmpty(money)){
+                if (TextUtils.isEmpty(money)) {
                     //设置button为不可操作的
                     btnChongzhi.setClickable(false);
                     //设置背景颜色
                     btnChongzhi.setBackgroundResource(R.drawable.btn_02);
-                }else{
+                } else {
                     //设置button为可操作的
                     btnChongzhi.setClickable(true);
                     //设置背景颜色
@@ -138,7 +140,7 @@ public class ChongZhiActivity extends BaseActivity {
     }
 
     @OnClick(R.id.iv_title_back)
-    public void back(View view){
+    public void back(View view) {
         this.removeCurrentActivity();
     }
 
@@ -148,7 +150,7 @@ public class ChongZhiActivity extends BaseActivity {
     }
 
     @OnClick(R.id.btn_chongzhi)
-    public void chongZhi(View view){
+    public void chongZhi(View view) {
 //        UIUtils.toast("充值",false);
         // 订单
         String orderInfo = getOrderInfo("iphone 7 plus 256G", "史上配置最高的iphone手机", "0.01");
@@ -190,7 +192,6 @@ public class ChongZhiActivity extends BaseActivity {
 
     /**
      * get the sign type we use. 获取签名方式
-     *
      */
     public String getSignType() {
         return "sign_type=\"RSA\"";
@@ -199,8 +200,7 @@ public class ChongZhiActivity extends BaseActivity {
     /**
      * sign the order info. 对订单信息进行签名
      *
-     * @param content
-     *            待签名订单信息
+     * @param content 待签名订单信息
      */
     public String sign(String content) {
         return SignUtils.sign(content, RSA_PRIVATE);
@@ -209,7 +209,6 @@ public class ChongZhiActivity extends BaseActivity {
 
     /**
      * create the order info. 创建订单信息
-     *
      */
     public String getOrderInfo(String subject, String body, String price) {
         // 签约合作者身份ID
@@ -264,7 +263,6 @@ public class ChongZhiActivity extends BaseActivity {
 
     /**
      * get the out_trade_no for an order. 生成商户订单号，该值在商户端应保持唯一（可自定义格式规范）
-     *
      */
     public String getOutTradeNo() {
         SimpleDateFormat format = new SimpleDateFormat("MMddHHmmss",

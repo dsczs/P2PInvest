@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample.custom;
 
 import android.content.Context;
@@ -13,7 +12,7 @@ import com.xxmassdeveloper.mpchartexample.R;
 
 /**
  * Custom implementation of the MarkerView.
- * 
+ *
  * @author Philipp Jahoda
  */
 public class MyMarkerView extends MarkerView {

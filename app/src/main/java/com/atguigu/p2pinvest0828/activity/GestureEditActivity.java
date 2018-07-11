@@ -134,7 +134,7 @@ public class GestureEditActivity extends Activity implements View.OnClickListene
 
         // 更新选择的图案
         mLockIndicator.setPath(inputCode);
-        mSharedPreferences.edit().putString("inputCode",inputCode).commit();
+        mSharedPreferences.edit().putString("inputCode", inputCode).commit();
         Log.e("TAG", "inputCode = " + inputCode);
     }
 

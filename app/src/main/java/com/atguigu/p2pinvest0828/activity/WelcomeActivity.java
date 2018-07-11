@@ -57,7 +57,9 @@ public class WelcomeActivity extends Activity {
     TextView tvWelcomeVersion;
     private boolean connect;
     private long startTime;
-
+    private ProgressDialog dialog;
+    private File apkFile;
+    private UpdateInfo updateInfo;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -72,36 +74,36 @@ public class WelcomeActivity extends Activity {
                     //更新页面显示的版本信息
                     tvWelcomeVersion.setText(version);
                     //比较服务器获取的最新的版本跟本应用的版本是否一致
-                    if(version.equals(updateInfo.version)){
-                        UIUtils.toast("当前应用已经是最新版本",false);
+                    if (version.equals(updateInfo.version)) {
+                        UIUtils.toast("当前应用已经是最新版本", false);
                         toMain();
-                    }else{
+                    } else {
                         new AlertDialog.Builder(WelcomeActivity.this)
-                                    .setTitle("下载最新版本")
-                                    .setMessage(updateInfo.desc)
-                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            //下载服务器保存的应用数据
-                                            downloadApk();
-                                        }
-                                    })
-                                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            toMain();
-                                        }
-                                    })
-                                    .show();
+                                .setTitle("下载最新版本")
+                                .setMessage(updateInfo.desc)
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //下载服务器保存的应用数据
+                                        downloadApk();
+                                    }
+                                })
+                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        toMain();
+                                    }
+                                })
+                                .show();
                     }
 
                     break;
                 case DOWNLOAD_APK_FAIL:
-                    UIUtils.toast("联网下载数据失败",false);
+                    UIUtils.toast("联网下载数据失败", false);
                     toMain();
                     break;
                 case DOWNLOAD_APK_SUCCESS:
-                    UIUtils.toast("下载应用数据成功",false);
+                    UIUtils.toast("下载应用数据成功", false);
                     dialog.dismiss();
                     installApk();//安装下载好的应用
                     finish();//结束当前的welcomeActivity的显示
@@ -117,8 +119,6 @@ public class WelcomeActivity extends Activity {
         startActivity(intent);
     }
 
-    private ProgressDialog dialog;
-    private File apkFile;
     private void downloadApk() {
         //初始化水平进度条的dialog
         dialog = new ProgressDialog(this);
@@ -127,16 +127,16 @@ public class WelcomeActivity extends Activity {
         dialog.show();
         //初始化数据要保持的位置
         File filesDir;
-        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             filesDir = this.getExternalFilesDir("");
-        }else{
+        } else {
             filesDir = this.getFilesDir();
         }
-        apkFile = new File(filesDir,"update.apk");
+        apkFile = new File(filesDir, "update.apk");
 
         //启动一个分线程联网下载数据：
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
                 String path = updateInfo.apkUrl;
                 InputStream is = null;
                 FileOutputStream fos = null;
@@ -151,42 +151,42 @@ public class WelcomeActivity extends Activity {
 
                     conn.connect();
 
-                    if(conn.getResponseCode() == 200){
+                    if (conn.getResponseCode() == 200) {
                         dialog.setMax(conn.getContentLength());//设置dialog的最大值
                         is = conn.getInputStream();
                         fos = new FileOutputStream(apkFile);
 
                         byte[] buffer = new byte[1024];
                         int len;
-                        while((len = is.read(buffer)) != -1){
+                        while ((len = is.read(buffer)) != -1) {
                             //更新dialog的进度
                             dialog.incrementProgressBy(len);
-                            fos.write(buffer,0,len);
+                            fos.write(buffer, 0, len);
 
                             SystemClock.sleep(1);
                         }
 
                         handler.sendEmptyMessage(DOWNLOAD_APK_SUCCESS);
 
-                    }else{
+                    } else {
                         handler.sendEmptyMessage(DOWNLOAD_APK_FAIL);
 
                     }
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                }finally{
-                    if(conn != null){
+                } finally {
+                    if (conn != null) {
                         conn.disconnect();
                     }
-                    if(is != null){
+                    if (is != null) {
                         try {
                             is.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
-                    if(fos != null){
+                    if (fos != null) {
                         try {
                             fos.close();
                         } catch (IOException e) {
@@ -201,8 +201,6 @@ public class WelcomeActivity extends Activity {
 
 
     }
-
-    private UpdateInfo updateInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

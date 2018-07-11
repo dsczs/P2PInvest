@@ -14,10 +14,14 @@ public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends Bar
     protected boolean mDrawVerticalHighlightIndicator = true;
     protected boolean mDrawHorizontalHighlightIndicator = true;
 
-    /** the width of the highlight indicator lines */
+    /**
+     * the width of the highlight indicator lines
+     */
     protected float mHighlightLineWidth = 0.5f;
 
-    /** the path effect for dashed highlight-lines */
+    /**
+     * the path effect for dashed highlight-lines
+     */
     protected DashPathEffect mHighlightDashPathEffect = null;
 
 
@@ -28,6 +32,7 @@ public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends Bar
 
     /**
      * Enables / disables the horizontal highlight-indicator. If disabled, the indicator is not drawn.
+     *
      * @param enabled
      */
     public void setDrawHorizontalHighlightIndicator(boolean enabled) {
@@ -36,6 +41,7 @@ public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends Bar
 
     /**
      * Enables / disables the vertical highlight-indicator. If disabled, the indicator is not drawn.
+     *
      * @param enabled
      */
     public void setDrawVerticalHighlightIndicator(boolean enabled) {
@@ -44,6 +50,7 @@ public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends Bar
 
     /**
      * Enables / disables both vertical and horizontal highlight-indicators.
+     *
      * @param enabled
      */
     public void setDrawHighlightIndicators(boolean enabled) {
@@ -60,15 +67,8 @@ public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends Bar
     }
 
     /**
-     * Sets the width of the highlight line in dp.
-     * @param width
-     */
-    public void setHighlightLineWidth(float width) {
-        mHighlightLineWidth = Utils.convertDpToPixel(width);
-    }
-
-    /**
      * Returns the line-width in which highlight lines are to be drawn.
+     *
      * @return
      */
     public float getHighlightLineWidth() {
@@ -76,14 +76,23 @@ public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends Bar
     }
 
     /**
+     * Sets the width of the highlight line in dp.
+     *
+     * @param width
+     */
+    public void setHighlightLineWidth(float width) {
+        mHighlightLineWidth = Utils.convertDpToPixel(width);
+    }
+
+    /**
      * Enables the highlight-line to be drawn in dashed mode, e.g. like this "- - - - - -"
      *
-     * @param lineLength the length of the line pieces
+     * @param lineLength  the length of the line pieces
      * @param spaceLength the length of space inbetween the line-pieces
-     * @param phase offset, in degrees (normally, use 0)
+     * @param phase       offset, in degrees (normally, use 0)
      */
     public void enableDashedHighlightLine(float lineLength, float spaceLength, float phase) {
-        mHighlightDashPathEffect = new DashPathEffect(new float[] {
+        mHighlightDashPathEffect = new DashPathEffect(new float[]{
                 lineLength, spaceLength
         }, phase);
     }

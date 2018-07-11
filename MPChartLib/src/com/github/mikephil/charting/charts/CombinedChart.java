@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
@@ -22,38 +21,29 @@ import com.github.mikephil.charting.renderer.CombinedChartRenderer;
 /**
  * This chart class allows the combination of lines, bars, scatter and candle
  * data all displayed in one chart area.
- * 
+ *
  * @author Philipp Jahoda
  */
 public class CombinedChart extends BarLineChartBase<CombinedData> implements LineDataProvider,
         BarDataProvider, ScatterDataProvider, CandleDataProvider, BubbleDataProvider {
 
-    /** flag that enables or disables the highlighting arrow */
+    protected DrawOrder[] mDrawOrder = new DrawOrder[]{
+            DrawOrder.BAR, DrawOrder.BUBBLE, DrawOrder.LINE, DrawOrder.CANDLE, DrawOrder.SCATTER
+    };
+    /**
+     * flag that enables or disables the highlighting arrow
+     */
     private boolean mDrawHighlightArrow = false;
-
     /**
      * if set to true, all values are drawn above their bars, instead of below
      * their top
      */
     private boolean mDrawValueAboveBar = true;
-
     /**
      * if set to true, a grey area is drawn behind each bar that indicates the
      * maximum value
      */
     private boolean mDrawBarShadow = false;
-
-    protected DrawOrder[] mDrawOrder = new DrawOrder[] {
-            DrawOrder.BAR, DrawOrder.BUBBLE, DrawOrder.LINE, DrawOrder.CANDLE, DrawOrder.SCATTER
-    };
-
-    /**
-     * enum that allows to specify the order in which the different data objects
-     * for the combined-chart are drawn
-     */
-    public enum DrawOrder {
-        BAR, BUBBLE, LINE, CANDLE, SCATTER
-    }
 
     public CombinedChart(Context context) {
         super(context);
@@ -80,7 +70,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Lin
     @Override
     protected void calcMinMax() {
         super.calcMinMax();
-        
+
         if (getBarData() != null || getCandleData() != null || getBubbleData() != null) {
             mXChartMin = -0.5f;
             mXChartMax = mData.getXVals().size() - 0.5f;
@@ -165,7 +155,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Lin
 
     /**
      * set this to true to draw the highlightning arrow
-     * 
+     *
      * @param enabled
      */
     public void setDrawHighlightArrow(boolean enabled) {
@@ -175,18 +165,17 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Lin
     /**
      * If set to true, all values are drawn above their bars, instead of below
      * their top.
-     * 
+     *
      * @param enabled
      */
     public void setDrawValueAboveBar(boolean enabled) {
         mDrawValueAboveBar = enabled;
     }
 
-
     /**
      * If set to true, a grey area is drawn behind each bar that indicates the
      * maximum value. Enabling his will reduce performance by about 50%.
-     * 
+     *
      * @param enabled
      */
     public void setDrawBarShadow(boolean enabled) {
@@ -195,7 +184,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Lin
 
     /**
      * Returns the currently set draw order.
-     * 
+     *
      * @return
      */
     public DrawOrder[] getDrawOrder() {
@@ -207,12 +196,20 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Lin
      * earlier you place them in the provided array, the further they will be in
      * the background. e.g. if you provide new DrawOrer[] { DrawOrder.BAR,
      * DrawOrder.LINE }, the bars will be drawn behind the lines.
-     * 
+     *
      * @param order
      */
     public void setDrawOrder(DrawOrder[] order) {
         if (order == null || order.length <= 0)
             return;
         mDrawOrder = order;
+    }
+
+    /**
+     * enum that allows to specify the order in which the different data objects
+     * for the combined-chart are drawn
+     */
+    public enum DrawOrder {
+        BAR, BUBBLE, LINE, CANDLE, SCATTER
     }
 }

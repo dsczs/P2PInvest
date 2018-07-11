@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -19,15 +18,16 @@ import com.github.mikephil.charting.components.YAxis.AxisDependency;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 public class RealtimeLineChartActivity extends DemoBase implements
         OnChartValueSelectedListener {
 
     private LineChart mChart;
+    private int year = 2015;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,8 +125,6 @@ public class RealtimeLineChartActivity extends DemoBase implements
         return true;
     }
 
-    private int year = 2015;
-
     private void addEntry() {
 
         LineData data = mChart.getData();
@@ -186,7 +184,7 @@ public class RealtimeLineChartActivity extends DemoBase implements
 
             @Override
             public void run() {
-                for(int i = 0; i < 500; i++) {
+                for (int i = 0; i < 500; i++) {
 
                     runOnUiThread(new Runnable() {
 

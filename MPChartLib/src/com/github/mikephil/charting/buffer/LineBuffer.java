@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.buffer;
 
 import com.github.mikephil.charting.data.Entry;

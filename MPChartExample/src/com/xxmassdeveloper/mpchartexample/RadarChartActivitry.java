@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Typeface;
@@ -28,6 +27,10 @@ public class RadarChartActivitry extends DemoBase {
 
     private RadarChart mChart;
     private Typeface tf;
+    private String[] mParties = new String[]{
+            "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
+            "Party I"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,11 +150,6 @@ public class RadarChartActivitry extends DemoBase {
         }
         return true;
     }
-
-    private String[] mParties = new String[] {
-            "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
-            "Party I"
-    };
 
     public void setData() {
 

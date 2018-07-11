@@ -10,16 +10,16 @@ public class MyApplication extends Application {
 
     private String data;
 
+    public MyApplication() {
+        Log.e("TAG", "MyApplication MyApplication()");
+    }
+
     public String getData() {
         return data;
     }
 
     public void setData(String data) {
         this.data = data;
-    }
-
-    public MyApplication() {
-        Log.e("TAG", "MyApplication MyApplication()");
     }
 
     @Override
