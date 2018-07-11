@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "E:\\www\\Android\\P2PInvest\\alipay_demo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_msp_icon.png.flat",
+        "source": "E:\\www\\Android\\P2PInvest\\alipay_demo\\src\\main\\res\\drawable-hdpi\\msp_icon.png"
+    },
+    {
+        "merged": "E:\\www\\Android\\P2PInvest\\alipay_demo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_msp_demo_title_bg.png.flat",
+        "source": "E:\\www\\Android\\P2PInvest\\alipay_demo\\src\\main\\res\\drawable-hdpi\\msp_demo_title_bg.png"
+    },
+    {
+        "merged": "E:\\www\\Android\\P2PInvest\\alipay_demo\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_msp_demo_title.png.flat",
+        "source": "E:\\www\\Android\\P2PInvest\\alipay_demo\\src\\main\\res\\drawable-hdpi\\msp_demo_title.png"
+    },
+    {
+        "merged": "E:\\www\\Android\\P2PInvest\\alipay_demo\\build\\intermediates\\res\\merged\\debug\\layout_pay_main.xml.flat",
+        "source": "E:\\www\\Android\\P2PInvest\\alipay_demo\\src\\main\\res\\layout\\pay_main.xml"
+    },
+    {
+        "merged": "E:\\www\\Android\\P2PInvest\\alipay_demo\\build\\intermediates\\res\\merged\\debug\\layout_pay_external.xml.flat",
+        "source": "E:\\www\\Android\\P2PInvest\\alipay_demo\\src\\main\\res\\layout\\pay_external.xml"
+    }
+]
