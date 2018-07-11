@@ -157,7 +157,6 @@ public class HomeFragment extends BaseFragment {
              Glide：Google推荐的图片加载库，专注于流畅的滚动。
              */
 
-
             //Picasso 加载图片简单用法
             Picasso.with(context).load((String) path).into(imageView);
 

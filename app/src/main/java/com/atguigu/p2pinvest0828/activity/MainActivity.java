@@ -233,6 +233,7 @@ public class MainActivity extends BaseActivity {
             }
         }
     };
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 

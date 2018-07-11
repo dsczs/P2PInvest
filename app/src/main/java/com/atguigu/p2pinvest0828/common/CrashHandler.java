@@ -72,8 +72,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private void collectionException(Throwable ex){
